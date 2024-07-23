@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/header/Header";
+import Sidebar from "./components/sidebar/Sidebar";
+import MainContent from "./components/mainContent/MainContent";
+import Manual from "./pages/Manual";
+import Methods from "./pages/Methods";
+import Research from "./pages/Research";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header title="（非公式）- 佐治研画像処理学習キット -" />
+        <Sidebar />
+        <MainContent>
+          <Routes>
+            <Route path="/manual" element={<Manual />} />
+            <Route path="/methods" element={<Methods />} />
+            <Route path="/research" element={<Research />} />
+            <Route
+              path="/"
+              element={
+                <div>
+                  <h1>Welcome to My Website</h1>
+                  <p>
+                    This is the main content area. Scroll to see the sidebar
+                    stay fixed.
+                  </p>
+                </div>
+              }
+            />
+          </Routes>
+        </MainContent>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

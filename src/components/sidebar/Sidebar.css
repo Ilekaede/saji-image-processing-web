@@ -1,0 +1,51 @@
+.sidebar {
+  position: fixed;
+  top: 60px; /* ヘッダーの下に配置 */
+  left: 0; /* 左側に固定表示 */
+  height: calc(100% - 60px); /* ヘッダーの高さを引いた分だけ高さを設定 */
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 999;
+  box-sizing: border-box; /* ボックスの幅と高さにパディングを含める */
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 15px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.sub-links {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.sub-links li {
+  margin-bottom: 10px;
+}
+
+.sub-links a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.sub-links a:hover {
+  text-decoration: underline;
+}

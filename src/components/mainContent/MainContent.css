@@ -1,0 +1,6 @@
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+  padding-top: 80px; /* ヘッダーの高さ分だけ余白を追加 */
+  box-sizing: border-box;
+}
