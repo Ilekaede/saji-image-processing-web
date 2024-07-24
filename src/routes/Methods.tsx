@@ -1,7 +1,5 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import Binarization from "./Binarization";
-import GeometricTransformation from "./Geometric_transformation";
 
 const Methods = () => {
   return (
@@ -17,13 +15,13 @@ const Methods = () => {
           </li>
         </ul>
       </nav>
-      <Routes>
+      {/* <Routes>
         <Route path="binarization" element={<Binarization />} />
         <Route
           path="geometric_transformation"
           element={<GeometricTransformation />}
         />
-      </Routes>
+      </Routes> */}
     </div>
   );
 };
