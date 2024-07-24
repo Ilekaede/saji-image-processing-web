@@ -31,7 +31,7 @@ interface LinkItemProps {
 
 const LinkItem: Array<LinkItemProps> = [
   { name: "Home", url: "/Home", icon: FiHome },
-  { name: "使い方", url: "/Manual", icon: FiCompass },
+  { name: "画像の基礎知識", url: "/Manual", icon: FiCompass },
   { name: "画像処理手法", url: "/Methods", icon: FiStar },
   { name: "研究への応用", url: "/Research", icon: FiTrendingUp },
 ];
@@ -39,7 +39,7 @@ const LinkItem: Array<LinkItemProps> = [
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="0vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={onClose}
         display={{ base: "none", md: "block" }}

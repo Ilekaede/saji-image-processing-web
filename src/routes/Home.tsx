@@ -1,11 +1,16 @@
-import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to my web site</h1>
-      <p>This is the main content area. scroll to see the sidebar stay fixed</p>
-    </div>
+    <Box p={4}>
+      <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
+        Welcome to my Saji-lab !
+      </Text>
+      <Text fontSize="xl" fontFamily="Verdana">
+        本サイトでは佐治研究室で特に学ぶべき古典画像処理を紹介します．
+      </Text>
+    </Box>
   );
 };
+
 export default Home;

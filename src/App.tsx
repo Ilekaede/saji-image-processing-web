@@ -5,6 +5,9 @@ import MainContent from "./components/mainContent/MainContent";
 import "./App.css";
 import Home from "./routes/Home";
 import Manual from "./routes/Manual";
+import Research from "./routes/Research";
+import Methods from "./routes/Methods";
+import Footer from "./components/footer/footer";
 
 const App = () => {
   return (
@@ -15,9 +18,11 @@ const App = () => {
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/Manual" element={<Manual />} />
-          {/* Add more routes here */}
+          <Route path="/Methods" element={<Methods />} />
+          <Route path="/Research" element={<Research />} />
         </Routes>
       </MainContent>
+      <Footer />
     </Router>
   );
 };
