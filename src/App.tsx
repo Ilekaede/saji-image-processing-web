@@ -8,6 +8,7 @@ import Manual from "./routes/Manual";
 import Research from "./routes/Research";
 import Methods from "./routes/Methods";
 import Footer from "./components/footer/footer";
+import MethodDetail from "./routes/MethodDetail";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/Manual" element={<Manual />} />
           <Route path="/Methods" element={<Methods />} />
           <Route path="/Research" element={<Research />} />
+          <Route path="/Methods/:id" element={<MethodDetail />} />
         </Routes>
       </MainContent>
       <Footer />

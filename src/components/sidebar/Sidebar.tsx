@@ -1,25 +1,16 @@
 import "./Sidebar.css";
 import {
   Box,
-  CloseButton,
   Flex,
   Icon,
   useColorModeValue,
-  Text,
   useDisclosure,
   BoxProps,
   FlexProps,
   Drawer,
   DrawerContent,
-  IconButton,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiStar,
-  FiCompass,
-  FiTrendingUp,
-  FiMenu,
-} from "react-icons/fi";
+import { FiHome, FiStar, FiCompass, FiTrendingUp } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
 
@@ -37,7 +28,7 @@ const LinkItem: Array<LinkItemProps> = [
 ];
 
 const Sidebar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
   return (
     <Box minH="0vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
@@ -56,10 +47,6 @@ const Sidebar = () => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        content
-      </Box> */}
     </Box>
   );
 };

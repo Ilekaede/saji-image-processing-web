@@ -1,8 +1,7 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Heading,
@@ -11,11 +10,12 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
-import sajiRogo from "../icon/saji_rogo.png";
 
 const articles = [
-  { id: 1, title: "2値化" },
-  { id: 2, title: "特徴点抽出" },
+  { id: 1, title: "2値化", overview: "2値化をより応用的に学んでみましょう" },
+  { id: 2, title: "特徴点抽出", overview: "特徴点抽出とは？" },
+  { id: 3, title: "深層学習と画像処理", overview: "まとめる" },
+  { id: 4, title: "ハフ変換", overview: "ハフ変換とは〜" },
 ];
 
 const Methods = () => {
@@ -23,7 +23,12 @@ const Methods = () => {
     <div>
       <ul>
         {articles.map((article) => (
-          <li key={article.id}>
+          <motion.li
+            key={article.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: article.id * 0.2 }}
+          >
             <Card
               direction={{ base: "column", sm: "row" }}
               overflow="hidden"
@@ -41,7 +46,7 @@ const Methods = () => {
                 <CardBody>
                   <Heading size="md">{article.title}</Heading>
 
-                  <Text py="2">2値化をより応用的に学んでみましょう</Text>
+                  <Text py="2">{article.overview}</Text>
                 </CardBody>
 
                 <CardFooter>
@@ -53,7 +58,7 @@ const Methods = () => {
                 </CardFooter>
               </Stack>
             </Card>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </div>
