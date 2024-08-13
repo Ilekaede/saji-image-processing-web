@@ -8,7 +8,7 @@ import Manual from "./routes/Manual";
 import Research from "./routes/Research";
 import Methods from "./routes/Methods";
 import Footer from "./components/footer/footer";
-import MethodDetail from "./routes/MethodDetail";
+import MethodDetail from "./components/methodDetail/MethodDetail";
 
 const App = () => {
   return (
