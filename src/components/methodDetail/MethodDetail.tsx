@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 const MethodDetail = () => {
   const { id } = useParams<{ id: string }>(); //idをURLから取得する
@@ -10,7 +8,7 @@ const MethodDetail = () => {
   console.log(id);
 
   useEffect(() => {
-    import(`../../content/method${id}.tsx`)
+    import(`../../content/Method${id}.tsx`)
       .then((module) => {
         setComponent(() => module.default);
       })
