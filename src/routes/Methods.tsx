@@ -12,10 +12,25 @@ import {
 } from "@chakra-ui/react";
 
 const articles = [
-  { id: 1, title: "2値化", overview: "2値化をより応用的に学んでみましょう" },
-  { id: 2, title: "特徴点抽出", overview: "特徴点抽出とは？" },
+  {
+    id: 1,
+    title: "2値化",
+    overview: "2値化をより応用的に学んでみましょう",
+    tags: ["画像処理", "2値化"],
+  },
+  {
+    id: 2,
+    title: "特徴点抽出",
+    overview: "特徴点抽出とは？",
+    tags: ["画像処理", "特徴点抽出"],
+  },
   { id: 3, title: "深層学習と画像処理", overview: "まとめる" },
-  { id: 4, title: "ハフ変換", overview: "ハフ変換とは〜" },
+  {
+    id: 4,
+    title: "ハフ変換",
+    overview: "ハフ変換とは〜",
+    tags: ["画像処理", "ハフ変換"],
+  },
 ];
 
 const Methods = () => {
@@ -45,8 +60,19 @@ const Methods = () => {
               <Stack>
                 <CardBody>
                   <Heading size="md">{article.title}</Heading>
-
                   <Text py="2">{article.overview}</Text>
+                  <Stack direction="row" spacing={2} mt={2}>
+                    {article.tags?.map((tag, index) => (
+                      <Button
+                        key={index}
+                        size="sm"
+                        variant="outline"
+                        colorScheme="gray"
+                      >
+                        {tag}
+                      </Button>
+                    ))}
+                  </Stack>
                 </CardBody>
 
                 <CardFooter>
