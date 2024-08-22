@@ -10,6 +10,7 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 const articles = [
   {
@@ -22,9 +23,14 @@ const articles = [
     id: 2,
     title: "特徴点抽出",
     overview: "特徴点抽出とは？",
-    tags: ["画像処理", "特徴点抽出"],
+    tags: ["画像処理", "特徴点"],
   },
-  { id: 3, title: "深層学習と画像処理", overview: "まとめる" },
+  {
+    id: 3,
+    title: "深層学習と画像処理",
+    overview: "まとめる",
+    tags: ["画像処理", "深層学習"],
+  },
   {
     id: 4,
     title: "ハフ変換",
@@ -34,10 +40,30 @@ const articles = [
 ];
 
 const Methods = () => {
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const filteredArticles = selectedTag
+    ? articles.filter((article) => article.tags?.includes(selectedTag))
+    : articles;
   return (
     <div>
+      <div>
+        <Button onClick={() => setSelectedTag(null)}>全て表示</Button>
+        {["画像処理", "2値化", "特徴点", "深層学習", "ハフ変換"].map((tag) => (
+          <Button
+            key={tag}
+            onClick={() => setSelectedTag(tag)}
+            size="sm"
+            variant="outline"
+            colorScheme="blue"
+            marginRight="5px"
+          >
+            {tag}
+          </Button>
+        ))}
+      </div>
       <ul>
-        {articles.map((article) => (
+        {filteredArticles.map((article) => (
           <motion.li
             key={article.id}
             initial={{ opacity: 0, y: 20 }}
