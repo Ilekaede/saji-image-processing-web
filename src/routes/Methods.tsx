@@ -11,6 +11,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import TagSelector from "../components/method/TagSelector";
 
 const articles = [
   {
@@ -48,19 +49,11 @@ const Methods = () => {
   return (
     <div>
       <div>
-        <Button onClick={() => setSelectedTag(null)}>全て表示</Button>
-        {["画像処理", "2値化", "特徴点", "深層学習", "ハフ変換"].map((tag) => (
-          <Button
-            key={tag}
-            onClick={() => setSelectedTag(tag)}
-            size="sm"
-            variant="outline"
-            colorScheme="blue"
-            marginRight="5px"
-          >
-            {tag}
-          </Button>
-        ))}
+        <TagSelector
+          tags={["深層学習", "ハフ変換"]}
+          selectedTag={selectedTag}
+          onTagSelect={setSelectedTag}
+        />
       </div>
       <ul>
         {filteredArticles.map((article) => (

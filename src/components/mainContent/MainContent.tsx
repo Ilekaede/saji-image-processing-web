@@ -1,8 +1,9 @@
 import React from "react";
 import "./MainContent.css";
+import { ReactNode } from "react";
 
 type MainContentProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 const MainContent = ({ children }: MainContentProps) => {
