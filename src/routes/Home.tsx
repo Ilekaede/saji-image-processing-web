@@ -8,6 +8,7 @@ const Home = () => {
       </Text>
       <Text fontSize="xl" fontFamily="Verdana">
         本サイトでは佐治研究室で特に学ぶべき古典画像処理を紹介します．
+        あくまで筆者の主観です．ご了承ください．
       </Text>
     </Box>
   );
