@@ -8,7 +8,6 @@ const Method5 = () => {
 
   const handleProcessImage = () => {
     setProcessTrigger(!processTrigger);
-    console.log("method:processTrigger: ", processTrigger);
   };
 
   return (
