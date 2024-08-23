@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import {
   Text,
   Button,
@@ -7,22 +7,47 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Box,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
-import ImageBlurring from "../components/methodDetail/ImageBlurring";
+import Blur from "../components/methodDetail/Blur";
+import Median from "../components/methodDetail/Median";
 import Lenna from "../components/image/lenna.bmp";
+import { setRef } from "@mui/material";
 
 const Method5 = () => {
-  const [processTrigger, setProcessTrigger] = useState<boolean>(false);
-  const [kernelSize, setKernelSize] = useState<number>(10);
-  const handleKernelSizeChange = (
+  const [processTriggerBlur, setProcessTriggerBlur] = useState<boolean>(false);
+  const [processTriggerMedian, setProcessTriggerMedian] =
+    useState<boolean>(false);
+  const [kernelSizeBlur, setKernelSizeBlur] = useState<number>(10);
+  const [kernelSizeMedian, setKernelSizeMedian] = useState<number>(10);
+  const [error, setError] = useState<string | null>(null);
+  const handleKernelSizeBlurChange = (
     valueAsString: string,
     valueAsNumber: number
   ) => {
-    setKernelSize(valueAsNumber);
+    setKernelSizeBlur(valueAsNumber);
   };
 
-  const handleProcessImage = () => {
-    setProcessTrigger(!processTrigger);
+  const handleKernelSizeMedianChange = (
+    valueAsString: string,
+    valueAsNumber: number
+  ) => {
+    if (valueAsNumber % 2 === 0) {
+      setError("カーネルサイズは奇数でなければなりません");
+    } else {
+      setError(null);
+    }
+    setKernelSizeMedian(valueAsNumber);
+  };
+
+  const handleProcessImageBlur = () => {
+    setProcessTriggerBlur(!processTriggerBlur);
+  };
+
+  const handleProcessImageMedian = () => {
+    setProcessTriggerMedian(!processTriggerMedian);
   };
 
   return (
@@ -38,76 +63,79 @@ const Method5 = () => {
       <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial" mt={3}>
         <li>ノイズ除去の手法</li>
       </Text>
-      <p>
-        ノイズ除去にはさまざまな手法があります。以下に代表的な方法を紹介します。
-      </p>
+      <Text>
+        ノイズ除去にはさまざまな手法があります。このページでは，2つの代表的なフィルタを紹介し，その違いを考えていきます。
+      </Text>
 
       <Text fontWeight="bold">1. 空間領域フィルタリング</Text>
-      <p>
-        <strong>空間領域フィルタリング</strong>
-        は、画像の各ピクセルの値を周囲のピクセルと比較・計算してノイズを低減する方法です。代表的なものをいくつか紹介します．
-      </p>
       <ul>
         <li>
           <br />
           <strong>1. 平均フィルタ（Mean Filter）</strong>:
           各ピクセルの値を周囲のピクセルの平均値で置き換えます。
-          <ul>
-            <li>
-              <strong>・利点</strong>: 実装が簡単で計算コストが低い。
-            </li>
-            <li>
-              <strong>・欠点</strong>:
-              エッジがぼやけやすく、詳細が失われる可能性がある。
-            </li>
-          </ul>
-          <div>
-            <label>
-              <Text mb={2}>
-                {" "}
-                カーネルサイズを指定:{" "}
-                {
-                  <NumberInput
-                    value={kernelSize}
-                    onChange={handleKernelSizeChange}
-                    min={1}
-                    max={30}
-                    size="sm"
-                    width="100px"
-                  >
-                    <NumberInputField />
-                    <NumberInputStepper>
-                      <NumberIncrementStepper />
-                      <NumberDecrementStepper />
-                    </NumberInputStepper>
-                  </NumberInput>
-                }
-              </Text>
-            </label>
-            <Button onClick={handleProcessImage}>
-              {processTrigger ? "元画像に戻す" : "平均化フィルタをつける"}
+          <Box>
+            <Text mb={2}>カーネルサイズを指定:</Text>
+            <NumberInput
+              value={kernelSizeBlur}
+              onChange={handleKernelSizeBlurChange}
+              min={1}
+              max={30}
+              size="sm"
+              width="100px"
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Button onClick={handleProcessImageBlur} mt={3}>
+              {processTriggerBlur ? "元画像に戻す" : "平均化フィルタをつける"}
             </Button>
-            <ImageBlurring
+            <Blur
               imageFile={Lenna}
-              processTrigger={processTrigger}
-              kernelSize={kernelSize}
+              processTrigger={processTriggerBlur}
+              kernelSize={kernelSizeBlur}
             />
-          </div>
+          </Box>
         </li>
         <li>
           <br />
           <strong>2．中央値フィルタ（Median Filter）</strong>:
           各ピクセルの値を周囲のピクセルの中央値で置き換えます。
-          <ul>
-            <li>
-              <strong>利点</strong>:
-              ソルト＆ペッパー（点状）ノイズに強く、エッジを保持しやすい。
-            </li>
-            <li>
-              <strong>欠点</strong>:
-              他のノイズタイプにはあまり効果的でない場合がある。
-            </li>
-          </ul>
+          <Box>
+            <Text mb={2}>カーネルサイズを指定:</Text>
+            <NumberInput
+              value={kernelSizeMedian}
+              onChange={handleKernelSizeMedianChange}
+              min={1}
+              max={30}
+              size="sm"
+              width="100px"
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            {error && (
+              <Alert status="error" mt={2}>
+                <AlertIcon />
+                {error}
+              </Alert>
+            )}
+            <Button onClick={handleProcessImageMedian} mt={3}>
+              {processTriggerMedian
+                ? "元画像に戻す"
+                : "メディアンフィルタをつける"}
+            </Button>
+            <Median
+              imageFile={Lenna}
+              processTrigger={processTriggerMedian}
+              kernelSize={kernelSizeMedian}
+            />
+          </Box>
         </li>
         <li>
           <strong>3. ガウシアンフィルタ（Gaussian Filter）</strong>:

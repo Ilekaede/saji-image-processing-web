@@ -7,7 +7,7 @@ interface ImageProcessorProps {
   kernelSize: number;
 }
 
-const ImageBlurring = ({
+const Median = ({
   imageFile,
   processTrigger,
   kernelSize,
@@ -34,8 +34,7 @@ const ImageBlurring = ({
           const src = cv.imread(canvas);
           const dst = new cv.Mat();
 
-          const ksize = new cv.Size(kernelSize, kernelSize); // カーネルサイズ
-          cv.blur(src, dst, ksize, new cv.Point(-1, -1), cv.BORDER_DEFAULT);
+          cv.medianBlur(src, dst, kernelSize);
           cv.imshow(canvas, dst);
 
           src.delete();
@@ -51,4 +50,4 @@ const ImageBlurring = ({
   );
 };
 
-export default ImageBlurring;
+export default Median;
