@@ -5,8 +5,6 @@ const MethodDetail = () => {
   const { id } = useParams<{ id: string }>(); //idをURLから取得する
   const [Component, setComponent] = useState<React.FC | null>(null);
 
-  console.log(id);
-
   useEffect(() => {
     import(`../../content/Method${id}.tsx`)
       .then((module) => {

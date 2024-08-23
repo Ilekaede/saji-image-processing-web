@@ -38,6 +38,12 @@ const articles = [
     overview: "ハフ変換とは〜",
     tags: ["画像処理", "ハフ変換"],
   },
+  {
+    id: 5,
+    title: "ノイズ除去",
+    overview: "なかなか注目がいかないノイズ除去について述べる．実はかなり重要",
+    tags: ["画像処理", "ノイズ"],
+  },
 ];
 
 const Methods = () => {
