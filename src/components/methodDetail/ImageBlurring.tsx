@@ -4,9 +4,14 @@ import cv from "opencv-ts";
 interface ImageProcessorProps {
   imageFile: string;
   processTrigger: boolean;
+  kernelSize: number;
 }
 
-const ImageBlurring = ({ imageFile, processTrigger }: ImageProcessorProps) => {
+const ImageBlurring = ({
+  imageFile,
+  processTrigger,
+  kernelSize,
+}: ImageProcessorProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -29,7 +34,7 @@ const ImageBlurring = ({ imageFile, processTrigger }: ImageProcessorProps) => {
           const src = cv.imread(canvas);
           const dst = new cv.Mat();
 
-          const ksize = new cv.Size(10, 10); // カーネルサイズ
+          const ksize = new cv.Size(kernelSize, kernelSize); // カーネルサイズ
           cv.blur(src, dst, ksize, new cv.Point(-1, -1), cv.BORDER_DEFAULT);
           cv.imshow(canvas, dst);
 

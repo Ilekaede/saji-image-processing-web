@@ -1,10 +1,25 @@
-import React, { useState } from "react";
-import { Text, Button } from "@chakra-ui/react";
+import React, { ChangeEvent, useState } from "react";
+import {
+  Text,
+  Button,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from "@chakra-ui/react";
 import ImageBlurring from "../components/methodDetail/ImageBlurring";
 import Lenna from "../components/image/lenna.bmp";
 
 const Method5 = () => {
   const [processTrigger, setProcessTrigger] = useState<boolean>(false);
+  const [kernelSize, setKernelSize] = useState<number>(10);
+  const handleKernelSizeChange = (
+    valueAsString: string,
+    valueAsNumber: number
+  ) => {
+    setKernelSize(valueAsNumber);
+  };
 
   const handleProcessImage = () => {
     setProcessTrigger(!processTrigger);
@@ -47,14 +62,41 @@ const Method5 = () => {
             </li>
           </ul>
           <div>
+            <label>
+              <Text mb={2}>
+                {" "}
+                カーネルサイズを指定:{" "}
+                {
+                  <NumberInput
+                    value={kernelSize}
+                    onChange={handleKernelSizeChange}
+                    min={1}
+                    max={30}
+                    size="sm"
+                    width="100px"
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                }
+              </Text>
+            </label>
             <Button onClick={handleProcessImage}>
-              {processTrigger ? "元画像を表示" : "画像処理結果を表示"}
+              {processTrigger ? "元画像に戻す" : "平均化フィルタをつける"}
             </Button>
-            <ImageBlurring imageFile={Lenna} processTrigger={processTrigger} />
+            <ImageBlurring
+              imageFile={Lenna}
+              processTrigger={processTrigger}
+              kernelSize={kernelSize}
+            />
           </div>
         </li>
         <li>
-          <strong>中央値フィルタ（Median Filter）</strong>:
+          <br />
+          <strong>2．中央値フィルタ（Median Filter）</strong>:
           各ピクセルの値を周囲のピクセルの中央値で置き換えます。
           <ul>
             <li>
@@ -68,7 +110,7 @@ const Method5 = () => {
           </ul>
         </li>
         <li>
-          <strong>ガウシアンフィルタ（Gaussian Filter）</strong>:
+          <strong>3. ガウシアンフィルタ（Gaussian Filter）</strong>:
           ピクセル値をガウス関数に基づく重み付け平均で置き換えます。
           <ul>
             <li>
