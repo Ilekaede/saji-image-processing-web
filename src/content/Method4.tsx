@@ -3,11 +3,11 @@
 import {
   Text,
   Button,
-  // NumberInput,
-  // NumberInputField,
-  // NumberInputStepper,
-  // NumberIncrementStepper,
-  // NumberDecrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
   Box,
   // Alert,
   // AlertIcon,
@@ -19,12 +19,18 @@ import HoughTransform from "../components/methodDetail/HoughTransform";
 import AbemaBag from "../components/image/abemaBag.jpg";
 
 const Method4 = () => {
-  const [processTriggerHough, setProcessTriggerHough] =
-    useState<boolean>(false);
+  const [processTrigger, setProcessTrigger] = useState<boolean>(false);
   // const [error, setError] = useState<string | null>(null);
+  const [threshold, setThreshold] = useState<number>(50);
+  const handleThresholdChange = (
+    valueAsString: string,
+    valueAsNumber: number
+  ) => {
+    setThreshold(valueAsNumber);
+  };
 
-  const handleProcessImageBlur = () => {
-    setProcessTriggerHough(!processTriggerHough);
+  const handleProcessImage = () => {
+    setProcessTrigger(!processTrigger);
   };
   return (
     <div>
@@ -68,13 +74,14 @@ const Method4 = () => {
         は直線の角度です。この変換により、直線のパラメータ空間（r と
         θ）に変換できます。
       </Text>
+      <br />
       <Box>
-        {/* <Text mb={2}>カーネルサイズを指定:</Text>
+        <Text mb={2}>しきい値(ハフ空間投票数の最低値)を指定:</Text>
         <NumberInput
-          value={kernelSizeHough}
-          onChange={handleKernelSizeHoughChange}
+          value={threshold}
+          onChange={handleThresholdChange}
           min={1}
-          max={30}
+          max={999}
           size="sm"
           width="100px"
         >
@@ -83,13 +90,14 @@ const Method4 = () => {
             <NumberIncrementStepper />
             <NumberDecrementStepper />
           </NumberInputStepper>
-        </NumberInput> */}
-        <Button onClick={handleProcessImageBlur} mt={3}>
-          {processTriggerHough ? "元画像に戻す" : "ハフ変換する"}
+        </NumberInput>
+        <Button onClick={handleProcessImage} mt={3}>
+          {processTrigger ? "元画像に戻す" : "ハフ変換する"}
         </Button>
         <HoughTransform
           imageFile={AbemaBag}
-          processTrigger={processTriggerHough}
+          processTrigger={processTrigger}
+          threshold={threshold}
         />
       </Box>
     </div>

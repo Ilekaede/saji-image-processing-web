@@ -4,9 +4,14 @@ import cv from "opencv-ts";
 interface HoughTransformProps {
   imageFile: string;
   processTrigger: boolean;
+  threshold: number;
 }
 
-const HoughTransform = ({ imageFile, processTrigger }: HoughTransformProps) => {
+const HoughTransform = ({
+  imageFile,
+  processTrigger,
+  threshold,
+}: HoughTransformProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -46,7 +51,7 @@ const HoughTransform = ({ imageFile, processTrigger }: HoughTransformProps) => {
            * @param threshold - 投票の閾値パラメータ．十分な投票量 (> thresholdの) を得た直線のみが出力される
            */
           const lines = new cv.Mat();
-          cv.HoughLines(img, lines, 1, Math.PI / 180, 120);
+          cv.HoughLines(img, lines, 1, Math.PI / 180, threshold);
 
           // 直線を描画する
           for (let i = 0; i < lines.rows; ++i) {
