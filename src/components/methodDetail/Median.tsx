@@ -34,6 +34,10 @@ const Median = ({
           const src = cv.imread(canvas);
           const dst = new cv.Mat();
 
+          if (kernelSize % 2 === 0) {
+            kernelSize = 1; //カーネルサイズを偶数で送られてきた時のエラー処理
+          }
+
           cv.medianBlur(src, dst, kernelSize);
           cv.imshow(canvas, dst);
 
