@@ -1,3 +1,5 @@
+// ノイズ除去について
+
 import React, { useState } from "react";
 import {
   Text,
