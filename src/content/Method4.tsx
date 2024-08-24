@@ -1,10 +1,31 @@
 // ハフ変換について
 
-import { Text } from "@chakra-ui/react";
+import {
+  Text,
+  Button,
+  // NumberInput,
+  // NumberInputField,
+  // NumberInputStepper,
+  // NumberIncrementStepper,
+  // NumberDecrementStepper,
+  Box,
+  // Alert,
+  // AlertIcon,
+  // SimpleGrid,
+} from "@chakra-ui/react";
 
-import React from "react";
+import React, { useState } from "react";
+import HoughTransform from "../components/methodDetail/HoughTransform";
+import AbemaBag from "../components/image/abemaBag.jpg";
 
 const Method4 = () => {
+  const [processTriggerHough, setProcessTriggerHough] =
+    useState<boolean>(false);
+  // const [error, setError] = useState<string | null>(null);
+
+  const handleProcessImageBlur = () => {
+    setProcessTriggerHough(!processTriggerHough);
+  };
   return (
     <div>
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
@@ -22,14 +43,14 @@ const Method4 = () => {
         ハフ変換(Hough
         Transform)は、画像処理やコンピュータビジョンにおいて、特定の形状（主に直線や円）を検出するための手法です。この変換は、エッジ検出の後に画像内の幾何学的形状を効果的に特定するために使用されます。
       </Text>
-      <Text>
+      <div>
         <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial" mt={3}>
           <li>基本概念</li>
         </Text>
         <Text>
           ハフ変換は、画像上のピクセルから形状のパラメータ空間に変換することで、その形状を検出します。例えば、直線や円のような形状をエッジ検出した後に特定する場合に使われます。
         </Text>
-      </Text>
+      </div>
       <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial" mt={3}>
         <li>直線におけるハフ変換</li>
       </Text>
@@ -47,6 +68,30 @@ const Method4 = () => {
         は直線の角度です。この変換により、直線のパラメータ空間（r と
         θ）に変換できます。
       </Text>
+      <Box>
+        {/* <Text mb={2}>カーネルサイズを指定:</Text>
+        <NumberInput
+          value={kernelSizeHough}
+          onChange={handleKernelSizeHoughChange}
+          min={1}
+          max={30}
+          size="sm"
+          width="100px"
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput> */}
+        <Button onClick={handleProcessImageBlur} mt={3}>
+          {processTriggerHough ? "元画像に戻す" : "ハフ変換する"}
+        </Button>
+        <HoughTransform
+          imageFile={AbemaBag}
+          processTrigger={processTriggerHough}
+        />
+      </Box>
     </div>
   );
 };

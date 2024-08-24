@@ -119,7 +119,12 @@ const Method5 = () => {
               />
             </Box>
             <Box mt={200}>
-              <img src={BlurImage} width="500px" height="300px" />
+              <img
+                src={BlurImage}
+                width="500px"
+                height="300px"
+                alt="lenna.bmp"
+              />
             </Box>
           </SimpleGrid>
         </li>
@@ -168,7 +173,7 @@ const Method5 = () => {
               />
             </Box>
             <Box mt={200}>
-              <img src={MedianImage} width={500} height={300} />
+              <img src={MedianImage} width={500} height={300} alt="lenna.bmp" />
             </Box>
           </SimpleGrid>
         </li>
