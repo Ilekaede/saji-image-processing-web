@@ -9,6 +9,7 @@ import Research from "./routes/Research";
 import Methods from "./routes/Methods";
 import Footer from "./components/footer/footer";
 import MethodDetail from "./components/methodDetail/MethodDetail";
+import Hero from "./routes/Hero";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Sidebar />
       <MainContent>
         <Routes>
+          <Route path="/" element={<Hero />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Manual" element={<Manual />} />
           <Route path="/Methods" element={<Methods />} />
