@@ -15,6 +15,9 @@ const Method1 = () => {
         <br />
         特に動画での車両検出を目的とした研究を行う場合は手法の一つとして活用できる場合があります．
       </Text>
+      <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial">
+        実際の使用例
+      </Text>
     </Box>
   );
 };
