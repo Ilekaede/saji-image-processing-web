@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import sajiRogo from "../icon/saji_rogo.png";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 type HeaderProps = {
   title: string;
@@ -11,7 +12,9 @@ type HeaderProps = {
 const Header = ({ title }: HeaderProps) => {
   return (
     <header className="header">
-      <div className="logo">{title}</div>
+      <Link to={`/`}>
+        <div className="logo">{title}</div>
+      </Link>
       <nav>
         <ul className="nav-links">
           <li>
