@@ -10,6 +10,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Sajilogo from "../components/icon/saji_rogo.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -43,16 +44,19 @@ const Hero = () => {
             It&apos;s perfect for freelancers, agencies, and moonlighters. */}
           </Text>
           <Stack direction={{ base: "column", md: "row" }} spacing={4}>
-            <Button
-              rounded={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              _hover={{
-                bg: "blue.500",
-              }}
-            >
-              Study Start!
-            </Button>
+            <Link to={`/home`}>
+              <Button
+                rounded={"full"}
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+              >
+                Study Start!
+              </Button>
+            </Link>
+
             {/* <Button rounded={"full"}>How It Works</Button> */}
           </Stack>
         </Stack>
