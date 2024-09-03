@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
   Button,
   Flex,
@@ -56,13 +57,17 @@ const Hero = () => {
                 Study Start!
               </Button>
             </Link>
-
-            {/* <Button rounded={"full"}>How It Works</Button> */}
           </Stack>
         </Stack>
       </Flex>
-      <Flex flex={1}>
-        <Image alt={"Login Image"} src={Sajilogo} />
+      <Flex flex={1} mt={250} ml={250}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <Image alt={"Login Image"} src={Sajilogo} />
+        </motion.div>
       </Flex>
     </Stack>
   );
