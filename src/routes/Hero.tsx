@@ -11,9 +11,15 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Sajilogo from "../components/icon/saji_rogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    setTimeout(() => {
+      navigate(`/home`);
+    }, 500);
+  };
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
@@ -45,18 +51,17 @@ const Hero = () => {
             It&apos;s perfect for freelancers, agencies, and moonlighters. */}
           </Text>
           <Stack direction={{ base: "column", md: "row" }} spacing={4}>
-            <Link to={`/home`}>
-              <Button
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Study Start!
-              </Button>
-            </Link>
+            <Button
+              onClick={handleClick}
+              rounded={"full"}
+              bg={"blue.400"}
+              color={"white"}
+              _hover={{
+                bg: "blue.500",
+              }}
+            >
+              Study Start!
+            </Button>
           </Stack>
         </Stack>
       </Flex>
