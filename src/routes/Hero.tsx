@@ -59,6 +59,10 @@ const Hero = () => {
               _hover={{
                 bg: "blue.500",
               }}
+              _active={{
+                transform: "scale(0.95)",
+                boxShadow: "0 0 0 10px rgba(66, 153, 225, 0.6)", // ボタン周りに広がる光
+              }}
             >
               Study Start!
             </Button>
