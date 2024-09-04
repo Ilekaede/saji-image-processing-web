@@ -102,7 +102,14 @@ const Methods = () => {
 
                 <CardFooter>
                   <Link to={`/methods/${article.id}`}>
-                    <Button variant="solid" colorScheme="blue">
+                    <Button
+                      variant="solid"
+                      colorScheme="blue"
+                      _active={{
+                        transform: "scale(0.95)",
+                        boxShadow: "0 0 0 10px rgba(66, 153, 225, 0.6)", // ボタン周りに広がる光
+                      }}
+                    >
                       View More
                     </Button>
                   </Link>

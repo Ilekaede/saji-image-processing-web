@@ -20,10 +20,7 @@ const TagSelector = ({ tags, selectedTag, onTagSelect }: TagSelectorProps) => {
         <Button
           key={tag}
           onClick={() => onTagSelect(tag)}
-          size="sm"
-          variant="outline"
-          colorScheme={selectedTag === null ? "blue" : "gray"}
-          marginRight="5px"
+          colorScheme={selectedTag === tag ? "blue" : "gray"}
         >
           {tag}
         </Button>
