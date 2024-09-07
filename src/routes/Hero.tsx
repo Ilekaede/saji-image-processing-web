@@ -9,17 +9,20 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  Box,
 } from "@chakra-ui/react";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import Sajilogo from "../components/icon/saji_rogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     setTimeout(() => {
       navigate(`/home`);
-    }, 500);
+    }, 300);
   };
+  const MotionBox = motion(Box);
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
@@ -51,21 +54,36 @@ const Hero = () => {
             It&apos;s perfect for freelancers, agencies, and moonlighters. */}
           </Text>
           <Stack direction={{ base: "column", md: "row" }} spacing={4}>
-            <Button
-              onClick={handleClick}
-              rounded={"full"}
-              bg={"blue.400"}
-              color={"white"}
-              _hover={{
-                bg: "blue.500",
-              }}
-              _active={{
-                transform: "scale(0.95)",
-                boxShadow: "0 0 0 10px rgba(66, 153, 225, 0.6)", // ボタン周りに広がる光
-              }}
-            >
-              Study Start!
-            </Button>
+            <Flex align="center" justify="center">
+              <Button
+                onClick={handleClick}
+                rounded={"full"}
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                _active={{
+                  transform: "scale(0.95)",
+                  boxShadow: "0 0 0 10px rgba(66, 153, 225, 0.6)", // ボタン周りに広がる光
+                }}
+              >
+                Study Start!
+              </Button>
+              <MotionBox
+                ml={4} // ボタンとの間にスペースを入れる
+                animate={{
+                  x: [-10, 10, -10], // 左右に揺れる
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ArrowBackIcon w={8} h={8} color="blue.500" />
+              </MotionBox>
+            </Flex>
           </Stack>
         </Stack>
       </Flex>
