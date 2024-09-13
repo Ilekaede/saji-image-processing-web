@@ -18,6 +18,7 @@ const Method1 = () => {
       <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial">
         実際の使用例
       </Text>
+      <Text>2つの画像を別角度から撮影した画像です．</Text>
     </Box>
   );
 };
