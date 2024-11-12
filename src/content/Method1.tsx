@@ -1,7 +1,8 @@
 // 二値化について
 
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Image } from "@chakra-ui/react";
+import abemaBagThreshold from "../components/image/abemaBag_threshold.jpg";
 const Method1 = () => {
   return (
     <Box p={4}>
@@ -35,6 +36,7 @@ const Method1 = () => {
           <li>クラス分散を計算し，最大であるか比較を行う．</li>
         </li>
       </ol>
+      <Image src={abemaBagThreshold} alt="判別分析法結果"></Image>
     </Box>
   );
 };
