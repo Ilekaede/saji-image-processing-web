@@ -3,6 +3,14 @@
 import React, { useRef, useState } from "react";
 import { Box, Text, VStack, Button, HStack } from "@chakra-ui/react";
 
+// メタデータの定義
+export const methodMetadata = {
+  id: 6,
+  title: "特徴点マッチング",
+  overview: "特徴点マッチングを使ってみよう",
+  tags: ["画像処理", "特徴点マッチング"],
+};
+
 const Method6 = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
@@ -17,10 +25,10 @@ const Method6 = () => {
   return (
     <Box p={4}>
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-        特徴点マッチング
+        {methodMetadata.title}
       </Text>
       <Text fontSize="xl" fontFamily="Verdana">
-        特徴点マッチングは、異なる画像間で対応する特徴点を見つけ出す技術です。この技術は、画像の位置合わせ、物体追跡、3D再構成など、様々なコンピュータビジョンタスクで重要な役割を果たします。
+        {methodMetadata.overview}
       </Text>
 
       <Text as="h2" fontSize="2xl" fontWeight="bold" fontFamily="Arial" mt={4}>

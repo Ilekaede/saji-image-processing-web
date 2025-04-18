@@ -2,27 +2,31 @@
 
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
-const Method1 = () => {
+
+// メタデータの定義
+export const methodMetadata = {
+  id: 2,
+  title: "背景画像の作成",
+  overview:
+    "画像の蓄積で背景画像を作成することができます。そのアルゴリズムを覗いてみましょう",
+  tags: ["画像処理", "背景画像"],
+};
+
+const Method2 = () => {
   return (
     <Box p={4}>
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-        特徴点抽出
+        {methodMetadata.title}
       </Text>
       <Text fontSize="xl" fontFamily="Verdana">
-        画像処理における特徴点抽出とは、画像内の重要なポイント(特徴点)を検出し，その位置や形状などの情報を取得するプロセスです．
-        <br />
-        特徴点は，画像の特定の部分を代表する点であり，他の部分と区別できる特徴を持っています．これらの特徴点は，画像の比較や物体認識，画像のトラッキングなど，さまざまな画像処理タスクにおいて重要な役割を果たします．
-        <br />
-        特に動画での車両検出を目的とした研究を行う場合は手法の一つとして活用できる場合があります．
+        {methodMetadata.overview}
       </Text>
       <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial">
         実際の使用例
       </Text>
-      <Text>
-        動画取ってakaze特徴点マッチング，処理結果をGIFにして動かし続けるorボタンで再生できるようにする？
-      </Text>
+      <Text>背景画像について記述するよ〜</Text>
     </Box>
   );
 };
 
-export default Method1;
+export default Method2;
