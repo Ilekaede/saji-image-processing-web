@@ -1,9 +1,9 @@
 ---
-name: カスタムテンプレート
+name: issue title
 about: issueの詳細についてテンプレートに沿って記載
 title: ''
 labels: ''
-assignees: ''
+assignees: Ilekaede
 
 ---
 
