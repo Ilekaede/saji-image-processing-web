@@ -5,14 +5,14 @@ import {
   Icon,
   useColorModeValue,
   useDisclosure,
-  BoxProps,
   FlexProps,
-  Drawer,
-  DrawerContent,
+  VStack,
+  useColorMode,
 } from "@chakra-ui/react";
 import { FiHome, FiStar, FiCompass, FiTrendingUp } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import { Link } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -28,50 +28,28 @@ const LinkItem: Array<LinkItemProps> = [
 ];
 
 const Sidebar = () => {
-  const { isOpen, onClose } = useDisclosure();
-  return (
-    <Box minH="0vh" bg={useColorModeValue("gray.100", "gray.900")}>
-      <SidebarContent
-        onClose={onClose}
-        display={{ base: "none", md: "block" }}
-      />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
-    </Box>
-  );
-};
+  const bgColor = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.700");
 
-interface SidebarProps extends BoxProps {
-  onClose: () => void;
-}
-
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
-      bg={useColorModeValue("white", "gray.900")}
-      borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      position="fixed"
+      left={0}
+      top={16}
+      h="calc(100vh - 64px)"
       w={{ base: "full", md: 60 }}
-      pos="fixed"
-      h="full"
-      {...rest}
+      bg={bgColor}
+      borderRight="1px"
+      borderColor={borderColor}
+      zIndex={5}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between" />
-      {LinkItem.map((link) => (
-        <NavItem key={link.name} icon={link.icon} url={link.url}>
-          {link.name}
-        </NavItem>
-      ))}
+      <VStack spacing={1} align="stretch" p={2}>
+        {LinkItem.map((link) => (
+          <NavItem key={link.name} icon={link.icon} url={link.url}>
+            {link.name}
+          </NavItem>
+        ))}
+      </VStack>
     </Box>
   );
 };
@@ -83,23 +61,21 @@ interface NavItemProps extends FlexProps {
 }
 
 const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
+  const hoverBg = useColorModeValue("blue.50", "blue.900");
+  const hoverColor = useColorModeValue("blue.600", "blue.200");
+
   return (
-    <Box
-      as="a"
-      href={url || "#"}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <Link to={url || "#"} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
         p="4"
-        mx="4"
+        mx="2"
         borderRadius="lg"
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
-          color: "white",
+          bg: hoverBg,
+          color: hoverColor,
         }}
         {...rest}
       >
@@ -108,45 +84,15 @@ const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: "white",
+              color: hoverColor,
             }}
             as={icon}
           />
         )}
         {children}
       </Flex>
-    </Box>
+    </Link>
   );
 };
-
-// interface MobileProps extends FlexProps {
-//   onOpen: () => void;
-// }
-// const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-//   return (
-//     <Flex
-//       ml={{ base: 0, md: 60 }}
-//       px={{ base: 4, md: 24 }}
-//       height="20"
-//       alignItems="center"
-//       bg={useColorModeValue("white", "gray.900")}
-//       borderBottomWidth="1px"
-//       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-//       justifyContent="flex-start"
-//       {...rest}
-//     >
-//       <IconButton
-//         variant="outline"
-//         onClick={onOpen}
-//         aria-label="open menu"
-//         icon={<FiMenu />}
-//       />
-
-//       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-//         Logo
-//       </Text>
-//     </Flex>
-//   );
-// };
 
 export default Sidebar;
