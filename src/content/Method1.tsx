@@ -3,15 +3,25 @@
 import React from "react";
 import { Box, Text, Image } from "@chakra-ui/react";
 import abemaBagThreshold from "../components/image/abemaBag_threshold.jpg";
+
+// メタデータの定義
+export const methodMetadata = {
+  id: 1,
+  title: "2値化",
+  overview:
+    "2値化は画像処理の基礎的な手法で，画像を黒と白の2色に分けます．特定の閾値を設定し，それに基づいて各ピクセルの色を決定します．画素値というよりは数値に対して使用する印象があり，単に色彩だけでなく，輝度や明度といった数値データに対して処理することもできます．",
+  tags: ["画像処理", "2値化"],
+  image: abemaBagThreshold,
+};
+
 const Method1 = () => {
   return (
     <Box p={4}>
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-        2値化
+        {methodMetadata.title}
       </Text>
       <Text fontSize="xl" fontFamily="Verdana">
-        2値化は画像処理の基礎的な手法で，画像を黒と白の
-        2色に分けます．特定の閾値を設定し，それに基づいて各ピクセルの色を決定します．画素値というよりは数値に対して使用する印象があり，単に色彩だけでなく，輝度や明度といった数値データに対して処理することもできます．
+        {methodMetadata.overview}
       </Text>
       <Text fontSize="xl" fontFamily="Verdana">
         例えば，Rチャンネルでの閾値，Gチャンネルの閾値，Bチャンネルの閾値を設定することで2値化を複数チャンネルに対して行うことができます．しかし，その分条件は細かく設定する(マジックナンバーが多い状態)必要があるため，汎用性は落ちます．また，組み合わせ等の検討も必要であるため，現実的ではないと言わざるを得ません．

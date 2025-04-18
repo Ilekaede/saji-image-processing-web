@@ -12,12 +12,24 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-const Method1 = () => {
+
+// メタデータの定義
+export const methodMetadata = {
+  id: 3,
+  title: "深層学習と画像処理",
+  overview: "まとめる",
+  tags: ["画像処理", "深層学習"],
+};
+
+const Method3 = () => {
   return (
     <div>
       <Box p={10}>
         <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-          Deep Learning とは？
+          {methodMetadata.title}
+        </Text>
+        <Text fontSize="xl" fontFamily="Verdana">
+          {methodMetadata.overview}
         </Text>
         <Text fontSize="xl" fontFamily="Verdana">
           Deep
@@ -246,4 +258,4 @@ const Method1 = () => {
   );
 };
 
-export default Method1;
+export default Method3;

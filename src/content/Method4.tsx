@@ -9,18 +9,22 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Box,
-  // Alert,
-  // AlertIcon,
-  // SimpleGrid,
 } from "@chakra-ui/react";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import HoughTransform from "../components/methodDetail/HoughTransform";
 import AbemaBag from "../components/image/abemaBag.jpg";
 
+// メタデータの定義
+export const methodMetadata = {
+  id: 4,
+  title: "ハフ変換",
+  overview: "ハフ変換とは〜",
+  tags: ["画像処理", "ハフ変換"],
+};
+
 const Method4 = () => {
   const [processTrigger, setProcessTrigger] = useState<boolean>(false);
-  // const [error, setError] = useState<string | null>(null);
   const [threshold, setThreshold] = useState<number>(50);
   const handleThresholdChange = (
     valueAsString: string,
@@ -33,9 +37,12 @@ const Method4 = () => {
     setProcessTrigger(!processTrigger);
   };
   return (
-    <div>
+    <Box p={4}>
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-        ハフ変換を理解する
+        {methodMetadata.title}
+      </Text>
+      <Text fontSize="xl" fontFamily="Verdana">
+        {methodMetadata.overview}
       </Text>
       <Text mt={3}>
         本稿では主に直線検出のために利用する画像処理で，
@@ -121,7 +128,7 @@ const Method4 = () => {
         <strong>応用課題</strong>
         <li>ハフ変換アルゴリズムをプログラムで作成しなさい．</li>
       </Text>
-    </div>
+    </Box>
   );
 };
 export default Method4;

@@ -4,10 +4,8 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  useDisclosure,
   FlexProps,
   VStack,
-  useColorMode,
 } from "@chakra-ui/react";
 import { FiHome, FiStar, FiCompass, FiTrendingUp } from "react-icons/fi";
 import { IconType } from "react-icons";
