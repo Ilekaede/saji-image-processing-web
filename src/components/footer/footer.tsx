@@ -15,6 +15,9 @@ const Footer = () => {
       borderStyle={"solid"}
       borderColor={useColorModeValue("gray.200", "gray.700")}
       bg={useColorModeValue("gray.100", "gray.900")}
+      position="relative"
+      bottom="0"
+      width="100%"
     >
       <Container
         as={Stack}
@@ -34,4 +37,5 @@ const Footer = () => {
     </Box>
   );
 };
+
 export default Footer;
