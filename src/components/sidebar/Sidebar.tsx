@@ -10,7 +10,7 @@ import {
 import { FiHome, FiStar, FiCompass, FiTrendingUp } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -59,8 +59,10 @@ interface NavItemProps extends FlexProps {
 }
 
 const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
+  const location = useLocation();
   const hoverBg = useColorModeValue("blue.50", "blue.900");
   const hoverColor = useColorModeValue("blue.600", "blue.200");
+  const isActive = location.pathname === url;
 
   return (
     <Link to={url || "#"} style={{ textDecoration: "none" }}>
@@ -71,6 +73,7 @@ const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
+        fontWeight={isActive ? "bold" : "normal"}
         _hover={{
           bg: hoverBg,
           color: hoverColor,
