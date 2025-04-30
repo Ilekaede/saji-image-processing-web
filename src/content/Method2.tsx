@@ -29,22 +29,22 @@ const Method2 = () => {
 
   const data = [
     {
-      name: "Frame Difference",
+      name: "フレーム間差分",
       features: "直近フレーム間の画素差を利用。実装が最も簡単。",
       update: "なし（静的背景想定）",
     },
     {
-      name: "Running Average",
+      name: "平均値法",
       features: "移動平均で背景を学習。徐々に変化に適応。",
       update: "B_t = (1 - α) B_{t-1} + α I_t",
     },
     {
-      name: "Gaussian Mixture Model (MOG)",
+      name: "混合ガウスモデル",
       features: "各画素を複数のガウス分布で表現。影やノイズに強い。",
       update: "各ガウスの重み・平均・分散を逐次更新",
     },
     {
-      name: "KNN-based",
+      name: "KNN法",
       features: "近傍サンプル集合で背景を推定。動的背景に対応。",
       update: "サンプル集合をスライド更新",
     },
