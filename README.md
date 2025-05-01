@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Saji Laboratory ImageProcessing Seminar to B3 WebSite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📖 概要（Overview）
 
-## Available Scripts
+- 画像処理を初めて学ぶ B3 新入生向けに作成した Web ページ
+- 動画像処理の学習が主な目的。時系列画像の処理が参考書ではイメージしづらいと考えたため。
+- 時系列処理を施した結果を Web ページにまとめることで、学習の定着に役立てる。
 
-In the project directory, you can run:
+## 🎥 デモ（Demo）
 
-### `npm start`
+![トップページ](./public/img/README_1.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ⚙️ 　学習項目（Features）
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 機能１　画像の基礎知識
+- 機能２　画像処理手法
+- 機能３　研究への応用
 
-### `npm test`
+## 🛠️ 技術スタック（Tech Stack）
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| 種類           | ツール／ライブラリ |
+| -------------- | ------------------ |
+| フロントエンド | React              |
+| スタイリング   | chakraUI           |
+| バージョン管理 | GitHub             |
+| ビルド         | Vite               |
 
-### `npm run build`
+## 🚀 インストール／起動方法（Getting Started）
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# リポジトリをクローン
+git clone https://github.com/Ilekaede/saji-image-processing-web.git
+cd b3semi_web
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 依存パッケージをインストール
+npm install   # または yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 開発サーバー起動
+npm run dev   # または yarn dev
+```
