@@ -1,22 +1,86 @@
 import { Box, Text, Flex, Heading } from "@chakra-ui/react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatedText } from "../components/AnimatedText";
+
+const videoList = [
+  "/videos/fish_detection.mp4",
+  "/videos/fox_pose_estimated.mp4",
+];
+
 const Home = () => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoList.length);
+  };
+
+  const handleVideoError = () => {
+    console.error("Video loading error");
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoList.length);
+  };
+
+  const handleVideoLoadStart = () => {
+    setIsLoading(true);
+  };
+
+  const handleVideoCanPlay = () => {
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      const playPromise = videoRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Error playing video:", error);
+          handleVideoError();
+        });
+      }
+    }
+  }, [currentVideoIndex]);
+
   return (
     <div>
       <Box position="relative" w="100%" h="60vh" overflow="hidden">
         <Box
           as="video"
-          src="/videos/fish.mp4"
+          ref={videoRef}
+          src={videoList[currentVideoIndex]}
           autoPlay
           muted
-          loop
+          loop={false}
+          preload="auto"
+          playsInline
           position="absolute"
           top="0"
           left="0"
           w="100%"
           h="100%"
           objectFit="cover"
+          onEnded={handleVideoEnd}
+          onError={handleVideoError}
+          onLoadStart={handleVideoLoadStart}
+          onCanPlay={handleVideoCanPlay}
         />
+
+        {isLoading && (
+          <Flex
+            position="absolute"
+            top="0"
+            left="0"
+            w="100%"
+            h="100%"
+            align="center"
+            justify="center"
+            bg="rgba(0,0,0,0.4)"
+          >
+            <Text color="white">Loading video...</Text>
+          </Flex>
+        )}
 
         <Flex
           position="absolute"
