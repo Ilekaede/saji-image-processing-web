@@ -19,7 +19,7 @@ interface LinkItemProps {
 }
 
 const LinkItem: Array<LinkItemProps> = [
-  { name: "Home", url: "/Home", icon: FiHome },
+  { name: "Home", url: "/", icon: FiHome },
   { name: "画像の基礎知識", url: "/Manual", icon: FiCompass },
   { name: "画像処理手法", url: "/Methods", icon: FiStar },
   { name: "研究への応用", url: "/Research", icon: FiTrendingUp },
