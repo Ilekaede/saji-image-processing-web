@@ -13,6 +13,10 @@ import {
   Alert,
   AlertIcon,
   SimpleGrid,
+  List,
+  ListItem,
+  Image,
+  Flex,
 } from "@chakra-ui/react";
 import Blur from "../components/methodDetail/Blur";
 import Median from "../components/methodDetail/Median";
@@ -63,39 +67,75 @@ const Method5 = () => {
   };
 
   return (
-    <Box p={4}>
-      <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
-        {methodMetadata.title}
-      </Text>
-      <Text fontSize="xl" fontFamily="Verdana">
-        {methodMetadata.overview}
-      </Text>
-      <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial" mt={3}>
+    <Box p={4} maxW="1200px" mx="auto">
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        align={{ base: "center", md: "flex-start" }}
+        gap={6}
+        mb={8}
+      >
+        <Text
+          as="h1"
+          fontSize="3xl"
+          fontWeight="bold"
+          fontFamily="Arial"
+          mb={4}
+        >
+          {methodMetadata.title}
+        </Text>
+        <Box flex="1" display="flex" justifyContent="center">
+          <Image
+            src={Lenna}
+            alt="ノイズ除去の例画像"
+            maxH="300px"
+            maxW="300px"
+            borderRadius="md"
+            boxShadow="md"
+          />
+        </Box>
+      </Flex>
+
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
         なぜノイズを除去する必要があるのか
       </Text>
-      <Text>
-        ノイズは撮影環境やセンサーの特性，画像圧縮など様々な要因で発生します．画像に含まれる不要なノイズ(ランダムな輝度や色の変動)を取り除き，画像の品質を向上させることは，画像内で必要となる情報の探しやすさにつながり，
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+        ノイズは撮影環境やセンサーの特性、画像圧縮など様々な要因で発生します。画像に含まれる不要なノイズ（ランダムな輝度や色の変動）を取り除き、画像の品質を向上させることは、画像内で必要となる情報の探しやすさにつながり、
         <strong>画像処理の精度向上</strong>
-        につながります．
-        <br />
-        ノイズ除去は，画像解析やコンピュータビジョンの<u>前処理</u>
-        として非常に重要なのです．
-        <br />
+        につながります。ノイズ除去は、画像解析やコンピュータビジョンの
+        <u>前処理</u>として非常に重要なのです。
       </Text>
-      <Text as="h1" fontSize="xl" fontWeight="bold" fontFamily="Arial" mt={3}>
-        <li>フィルタリング処理</li>
+
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
+        フィルタリング処理
       </Text>
-      <Text>
-        画像にフィルタリング処理を施すことで，ノイズを一定低減することができます．フィルタの種類は様々で，目的に合ったフィルタを選ぶことが重要になってきます．
-        <br />
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+        画像にフィルタリング処理を施すことで、ノイズを一定低減することができます。フィルタの種類は様々で、目的に合ったフィルタを選ぶことが重要になってきます。
       </Text>
-      <ul>
-        <li>
-          <br />
-          <strong>1. 平均フィルタ（Mean Filter）</strong>:
-          各ピクセルの値を周囲のピクセルの平均値で置き換えます．画像全体が
-          <strong>滑らかな濃淡</strong>
-          となるため，ノイズなどの不要な濃淡変動を軽減することができます．
+
+      <List spacing={6} styleType="decimal" pl={4} mb={8}>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            平均フィルタ（Mean Filter）
+          </Text>
+          <Text fontSize="md" lineHeight="1.8" mb={2}>
+            各ピクセルの値を周囲のピクセルの平均値で置き換えます。画像全体が
+            <strong>滑らかな濃淡</strong>
+            となるため、ノイズなどの不要な濃淡変動を軽減することができます。
+          </Text>
           <SimpleGrid columns={2} spacing={5}>
             <Box>
               <Text mb={2}>カーネルサイズを指定:</Text>
@@ -122,27 +162,29 @@ const Method5 = () => {
                 kernelSize={kernelSizeBlur}
               />
             </Box>
-            <Box mt={200}>
-              <img
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <Image
                 src={BlurImage}
-                width="500px"
-                height="300px"
-                alt="lenna.bmp"
+                width="300px"
+                height="auto"
+                alt="平均化フィルタ後の画像"
+                borderRadius="md"
+                boxShadow="md"
               />
             </Box>
           </SimpleGrid>
-        </li>
-        <li>
-          <br />
-          <Text>
-            平均化フィルタは非常にシンプルかつ簡単にノイズを低減できますが，同時に画像のエッジも低減していまうという欠点があります．
-            <br />
-            そのため，画像内の物体検出を行う際には，エッジを保存しつつ平滑化する必要があります．
+          <Text fontSize="md" lineHeight="1.8" mt={4}>
+            平均化フィルタは非常にシンプルかつ簡単にノイズを低減できますが、同時に画像のエッジも低減してしまうという欠点があります。そのため、画像内の物体検出を行う際には、エッジを保存しつつ平滑化する必要があります。
           </Text>
-          <br />
-          <strong>2．中央値フィルタ（Median Filter）</strong>:
-          各ピクセルの値を周囲のピクセルの中央値で置き換えます。
-          <SimpleGrid columns={2}>
+        </ListItem>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            中央値フィルタ（Median Filter）
+          </Text>
+          <Text fontSize="md" lineHeight="1.8" mb={2}>
+            各ピクセルの値を周囲のピクセルの中央値で置き換えます。
+          </Text>
+          <SimpleGrid columns={2} spacing={5}>
             <Box>
               <Text mb={2}>カーネルサイズを指定:</Text>
               <NumberInput
@@ -176,35 +218,46 @@ const Method5 = () => {
                 kernelSize={kernelSizeMedian}
               />
             </Box>
-            <Box mt={200}>
-              <img src={MedianImage} width={500} height={300} alt="lenna.bmp" />
+            <Box display="flex" alignItems="center" justifyContent="center">
+              <Image
+                src={MedianImage}
+                width="300px"
+                height="auto"
+                alt="中央値フィルタ後の画像"
+                borderRadius="md"
+                boxShadow="md"
+              />
             </Box>
           </SimpleGrid>
-        </li>
-      </ul>
-      <br />
-      <Text fontWeight="bold">課題</Text>
-      <ul>
-        <li>
-          1.
-          2つのフィルタのカーネルサイズを変化させ，その実験結果からわかることをまとめなさい．
-        </li>
-        <li>
-          2.
-          これらの違いが画像処理においてどのような利点となるか，考察しなさい．
-        </li>
-        <li>
-          3.
-          他にはどのようなフィルタがあるのか調べ，まとめなさい．その際，他フィルターとの比較や，実際の使用例も入れること．
-        </li>
-      </ul>
-      <br />
+        </ListItem>
+      </List>
 
-      <Text>
-        ノイズの低減は，同時に画像内のエッジがぼやけることにつながります．2つはトレードオフであるため，どのようなバランスでノイズを減らしていくかは十分に検討を重ねる必要があります．
-        <br />
-        例えば，<strong>ガウシアンフィルタ</strong>
-        は注目画素をガウス関数に基づく重み付け平均で置き換えます．これにより，ノイズを滑らかに除去しつつ，エッジを比較的綺麗に残すことができます.
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
+        課題
+      </Text>
+      <List spacing={3} styleType="decimal" pl={4} mb={8}>
+        <ListItem>
+          2つのフィルタのカーネルサイズを変化させ、その実験結果からわかることをまとめなさい。
+        </ListItem>
+        <ListItem>
+          これらの違いが画像処理においてどのような利点となるか、考察しなさい。
+        </ListItem>
+        <ListItem>
+          他にはどのようなフィルタがあるのか調べ、まとめなさい。その際、他フィルターとの比較や、実際の使用例も入れること。
+        </ListItem>
+      </List>
+
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+        ノイズの低減は、同時に画像内のエッジがぼやけることにつながります。2つはトレードオフであるため、どのようなバランスでノイズを減らしていくかは十分に検討を重ねる必要があります。
+        例えば、<strong>ガウシアンフィルタ</strong>
+        は注目画素をガウス関数に基づく重み付け平均で置き換えます。これにより、ノイズを滑らかに除去しつつ、エッジを比較的綺麗に残すことができます。
       </Text>
     </Box>
   );
