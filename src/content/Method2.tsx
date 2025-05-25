@@ -13,6 +13,8 @@ import {
   TableContainer,
   Box,
   Heading,
+  List,
+  ListItem,
 } from "@chakra-ui/react";
 
 // メタデータの定義
@@ -51,54 +53,74 @@ const Method2 = () => {
   ];
 
   return (
-    <Box p={4}>
-      <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial">
+    <Box p={4} maxW="1200px" mx="auto">
+      <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial" mb={4}>
         {methodMetadata.title}
       </Text>
 
-      <Text as="h2" fontSize="2xl" fontWeight="bold" fontFamily="Arial" mt={4}>
+      {/* <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+        {methodMetadata.overview}
+      </Text> */}
+
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
         背景差分とは？
       </Text>
-      <Text fontSize="xl" fontFamily="Verdana">
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
         背景差分は、動画内の動体を検出するための手法で、背景と前景を分離することを目的としています。主に固定カメラで撮影された動画に対して使用されます。背景差分法は、以下のような手順で動体を検出します。
       </Text>
-      <ol>
-        <li>
-          <Text fontSize="xl" fontWeight="bold">
+
+      <List spacing={4} styleType="decimal" pl={4} mb={6}>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
             背景モデルの構築
           </Text>
-          <Text fontSize="xl">
+          <Text fontSize="md" lineHeight="1.8">
             動画の最初の数フレームを使用して、背景モデルを構築します。背景モデルは、静止した物体の平均値や中央値を計算することで作成されます。
           </Text>
-        </li>
-        <li>
-          <Text fontSize="xl" fontWeight="bold">
+        </ListItem>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
             前景抽出
           </Text>
-          <Text fontSize="xl">
+          <Text fontSize="md" lineHeight="1.8">
             各フレームと背景モデルを比較し、差分を計算します。差分が一定の閾値を超えた部分が前景として抽出されます。
           </Text>
-        </li>
-        <li>
-          <Text fontSize="xl" fontWeight="bold">
+        </ListItem>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
             後処理
           </Text>
-          <Text fontSize="xl">
+          <Text fontSize="md" lineHeight="1.8">
             前景マスクに対してモルフォロジー処理やノイズ除去を行い、動体を強調します。
           </Text>
-          <Text fontSize="xl">
+          <Text fontSize="md" lineHeight="1.8" mt={2}>
             このような手法で前景を抽出するだけでなく、背景を補完することも可能です。背景を補完することで、動体がない状態の映像を生成することができます。
           </Text>
-        </li>
-      </ol>
-      <Text as="h2" fontSize="2xl" fontWeight="bold" fontFamily="Arial" mt={4}>
+        </ListItem>
+      </List>
+
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
         背景分離アルゴリズムの種類
       </Text>
-      <Text fontSize="xl">
-        背景差分法にはいくつかのバリエーションがあります。以下は代表的なものです
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+        背景差分法にはいくつかのバリエーションがあります。以下は代表的なものです。
       </Text>
-      <br />
-      <Box p={4} borderWidth="1px" borderRadius="lg" boxShadow="md">
+
+      <Box p={6} borderWidth="1px" borderRadius="lg" boxShadow="md" mb={8}>
         <Heading size="md" mb={4}>
           背景差分法の代表的アルゴリズム
         </Heading>
@@ -123,25 +145,25 @@ const Method2 = () => {
           </Table>
         </TableContainer>
       </Box>
-      <br />
-      <Text fontSize="xl">
+
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
         ボールが転がる動画に対して背景差分法を利用し、前景と背景を分離した例を示します。
       </Text>
 
-      <VStack spacing={4} mt={4}>
-        <Text fontSize="xl" fontWeight="bold">
+      <VStack spacing={4} mt={6} mb={8}>
+        <Text fontSize="lg" fontWeight="bold">
           前景と背景を分離した結果
         </Text>
         <Box
           as="video"
           ref={videoRef}
           controls
-          width="800px"
-          height="450px"
+          width="100%"
+          maxW="800px"
+          height="auto"
           borderRadius="lg"
           boxShadow="lg"
         >
-          {/* <source src="/videos/comparison.mp4" type="video/mp4" /> */}
           <source src="/videos/comparison.webm" type="video/webm" />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
@@ -149,31 +171,38 @@ const Method2 = () => {
           左：元映像　中央：背景　右：前景
         </Text>
       </VStack>
-      <br />
-      <Text fontSize="xl">
+
+      <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={8}>
         カメラで撮影されたボールの動きを分離して、前景として出力しています。一方、背景は前フレームの情報を利用して補完した結果が出力されており、ボールのない映像が出力されています。
       </Text>
 
-      <Text as="h2" fontSize="2xl" fontWeight="bold" fontFamily="Arial" mt={4}>
+      <Text
+        as="h2"
+        fontSize="2xl"
+        fontWeight="bold"
+        fontFamily="Arial"
+        mt={8}
+        mb={4}
+      >
         課題
       </Text>
-      <ol>
-        <li>
-          <Text fontSize="xl">
+      <List spacing={4} styleType="decimal" pl={4}>
+        <ListItem>
+          <Text fontSize="md" lineHeight="1.8">
             前景・背景アルゴリズムの実装を行いなさい。背景差分法を用いて、動画から動体を検出するプログラムを作成してください。
           </Text>
-        </li>
-        <li>
-          <Text fontSize="xl">
+        </ListItem>
+        <ListItem>
+          <Text fontSize="md" lineHeight="1.8">
             実際に動画を利用して背景差分法を適用してください。その中で、精度良く動体を検出する、もしくは背景を作成するための工夫を考えてください。
           </Text>
-        </li>
-        <li>
-          <Text fontSize="xl">
+        </ListItem>
+        <ListItem>
+          <Text fontSize="md" lineHeight="1.8">
             背景画像の生成には前フレーム数が必要です。前フレーム数を増やすことで、背景画像の精度は向上しますが、計算量も増加します。逆に減らした際には、計算量は減りますが、精度が低下します。背景分離をリアルタイムで実装する場合には、前フレーム数をどのように設定するのが良いか考えてみてください。
           </Text>
-        </li>
-      </ol>
+        </ListItem>
+      </List>
     </Box>
   );
 };

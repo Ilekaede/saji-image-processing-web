@@ -9,6 +9,7 @@ import Research from "./routes/Research";
 import Methods from "./routes/Methods";
 import Footer from "./components/footer/footer";
 import MethodDetail from "./components/methodDetail/MethodDetail";
+import "katex/dist/katex.mjs";
 
 const App = () => {
   return (
