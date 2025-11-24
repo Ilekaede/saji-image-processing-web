@@ -1,11 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Ignore video files
+# Ignore video files (except in public/videos/ for deployment)
 *.mp4
 *.webm
 *.avi
 *.mov
 *.mkv
+# But allow videos in public/videos/ for GitHub Pages
+!public/videos/*.mp4
+!public/videos/*.webm
+
 # dependencies
 /node_modules
 /.pnp
@@ -27,8 +31,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/src/components/icon
 
 # Python
 __pycache__/
