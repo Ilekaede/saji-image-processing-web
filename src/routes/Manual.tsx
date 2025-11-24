@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   Text,
@@ -10,7 +10,7 @@ import {
   Icon,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaPlayCircle } from "react-icons/fa";
+import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
 import lenna from "../components/image/lenna.bmp";
 import lennaHist from "../components/image/lenna_hist.png";
 import "katex/dist/katex.min.css";
@@ -20,7 +20,23 @@ import { InlineMath, BlockMath } from "react-katex";
  * Manual – visually‑enhanced version (TypeScript friendly)
  */
 const Manual = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handlePlay = () => setIsPlaying(true);
+  const handlePause = () => setIsPlaying(false);
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
+  const handleVideoClick = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+    }
+  };
   const bg = useColorModeValue("gray.50", "gray.800");
   const accent = useColorModeValue("blue.500", "blue.300");
 
@@ -139,28 +155,51 @@ const Manual = () => {
         borderRadius="lg"
         overflow="hidden"
         boxShadow="2xl"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        cursor="pointer"
       >
         <Box
           as="video"
           ref={videoRef}
-          controls
+          controls={false}
           width="100%"
           height="auto"
-          _hover={{ filter: "none" }}
-          filter="brightness(0.9)"
+          onPlay={handlePlay}
+          onPause={handlePause}
+          onClick={handleVideoClick}
         >
           <source src={`${process.env.PUBLIC_URL}/videos/raccoon_tracked_cutted.mp4`} type="video/mp4" />
         </Box>
-        <Icon
-          as={FaPlayCircle}
-          boxSize={16}
-          color="whiteAlpha.800"
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          pointerEvents="none"
-        />
+
+        {/* オーバーレイ（再生中 + ホバー時） */}
+        {isPlaying && isHovering && (
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bg="blackAlpha.400"
+            pointerEvents="none"
+            transition="opacity 0.2s"
+          />
+        )}
+
+        {/* 再生/一時停止ボタン（ホバー時のみ） */}
+        {isHovering && (
+          <Icon
+            as={isPlaying ? FaPauseCircle : FaPlayCircle}
+            boxSize={16}
+            color="whiteAlpha.900"
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            pointerEvents="none"
+            transition="opacity 0.2s"
+          />
+        )}
       </Box>
       <Text align="center" fontSize="sm" color="gray.600" mt={2}>
         かわいいレッサーパンダ @ 浜松市動物園
