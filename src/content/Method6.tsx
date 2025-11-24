@@ -26,6 +26,7 @@ export const methodMetadata = {
   title: "特徴点マッチング",
   overview: "特徴点マッチングを使ってみよう",
   tags: ["画像処理", "特徴点マッチング"],
+  searchableContent: "特徴点マッチング SIFT SURF ORB 特徴量 キーポイント 対応点 feature matching descriptor",
 };
 
 const detectorData = [

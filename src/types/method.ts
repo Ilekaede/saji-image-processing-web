@@ -4,4 +4,5 @@ export interface MethodContent {
   overview: string;
   tags: string[];
   image?: string;
+  searchableContent?: string;
 }

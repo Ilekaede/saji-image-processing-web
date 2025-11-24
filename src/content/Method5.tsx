@@ -31,6 +31,7 @@ export const methodMetadata = {
   overview: "なかなか注目がいかないノイズ除去について述べる．実はかなり重要",
   tags: ["画像処理", "ノイズ"],
   image: Lenna,
+  searchableContent: "ノイズ除去 フィルタ ガウシアンフィルタ メディアンフィルタ 平滑化 smoothing デノイジング ぼかし blur",
 };
 
 const Method5 = () => {

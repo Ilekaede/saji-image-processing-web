@@ -24,6 +24,7 @@ export const methodMetadata = {
     title: "オプティカルフロー",
     overview: "動画像内のピクセルの動きを推定する基本技術",
     tags: ["画像処理", "動画像処理", "オプティカルフロー"],
+    searchableContent: "オプティカルフロー optical flow Lucas-Kanade Farneback 動き推定 輝度一定性 疎密 物体追跡 動画処理",
     // image: opticalFlowImage, // TODO: Add image
 };
 

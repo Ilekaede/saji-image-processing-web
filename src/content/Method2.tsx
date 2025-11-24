@@ -24,6 +24,7 @@ export const methodMetadata = {
   overview:
     "動画から背景情報のみを取り出してみる。固定カメラ案件での活躍が期待できる。",
   tags: ["画像処理", "背景差分法"],
+  searchableContent: "背景差分法 動体検出 フレーム差分 移動物体 検出 background subtraction 動画処理 時系列 変化検出",
 };
 
 const Method2 = () => {

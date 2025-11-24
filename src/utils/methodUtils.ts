@@ -1,5 +1,14 @@
 import { MethodContent } from "../types/method";
 
+export interface MethodMetadata {
+  id: number;
+  title: string;
+  overview: string;
+  tags: string[];
+  image?: string;
+  searchableContent?: string; // コンテンツ内の検索可能なテキスト
+}
+
 // メソッドファイルから情報を抽出する関数
 export const extractMethodInfo = (content: string): Partial<MethodContent> => {
   const titleMatch = content.match(/<Text as="h1".*?>(.*?)<\/Text>/);
@@ -27,6 +36,7 @@ export const generateMethodContents = (): MethodContent[] => {
         overview: methodModule.overview,
         tags: methodModule.tags,
         image: methodModule.image,
+        searchableContent: methodModule.searchableContent,
       });
       methodIndex++;
     } catch (error) {
