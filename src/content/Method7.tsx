@@ -12,6 +12,7 @@ export const methodMetadata = {
     "Pythonの画像処理って速度遅いな〜二重ループなんてやってられないよ;;と思っているそこのあなた向け",
   tags: ["画像処理", "NumPy"],
   image: pythonPC,
+  searchableContent: "NumPy Python 配列 ベクトル化 高速化 行列演算 ndarray ループ最適化 パフォーマンス",
 };
 
 const Method7 = () => {

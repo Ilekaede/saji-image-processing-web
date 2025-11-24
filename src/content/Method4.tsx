@@ -26,6 +26,7 @@ export const methodMetadata = {
   overview: "ハフ変換とは〜",
   tags: ["画像処理", "ハフ変換"],
   image: AbemaBag,
+  searchableContent: "ハフ変換 直線検出 円検出 Hough transform エッジ検出 形状検出 パラメータ空間 投票",
 };
 
 const Method4 = () => {

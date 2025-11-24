@@ -25,6 +25,7 @@ export const methodMetadata = {
   overview: "まとめる",
   tags: ["画像処理", "深層学習"],
   image: deepLearing,
+  searchableContent: "深層学習 ディープラーニング CNN 畳み込みニューラルネットワーク 機械学習 AI 人工知能 ニューラルネットワーク 学習 訓練 推論",
 };
 
 const Method3 = () => {

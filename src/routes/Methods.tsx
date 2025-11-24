@@ -66,7 +66,9 @@ const Methods = () => {
       return (
         content.title.toLowerCase().includes(searchLower) ||
         content.overview.toLowerCase().includes(searchLower) ||
-        content.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+        content.tags.some((tag) => tag.toLowerCase().includes(searchLower)) ||
+        (content.searchableContent &&
+          content.searchableContent.toLowerCase().includes(searchLower))
       );
     })
     : methodContents;
