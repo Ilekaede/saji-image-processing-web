@@ -13,7 +13,7 @@ import "katex/dist/katex.mjs";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Box minH="100vh" bg="slate.50">
         <Header title="（非公式）- 佐治研画像処理学習キット -" />
         <Sidebar />
