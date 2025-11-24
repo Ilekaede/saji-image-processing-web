@@ -11,6 +11,7 @@ export const methodMetadata = {
   overview:
     "Pythonの画像処理って速度遅いな〜二重ループなんてやってられないよ;;と思っているそこのあなた向け",
   tags: ["画像処理", "NumPy"],
+  image: pythonPC,
 };
 
 const Method7 = () => {

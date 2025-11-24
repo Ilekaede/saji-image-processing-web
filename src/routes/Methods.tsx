@@ -15,7 +15,7 @@ import {
   InputRightElement,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { generateMethodContents } from "../utils/methodUtils";
 
@@ -23,7 +23,7 @@ const Methods = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const methodContents = generateMethodContents();
+  const methodContents = useMemo(() => generateMethodContents(), []);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,13 +62,13 @@ const Methods = () => {
 
   const filteredContents = isSearching
     ? methodContents.filter((content) => {
-        const searchLower = searchQuery.toLowerCase();
-        return (
-          content.title.toLowerCase().includes(searchLower) ||
-          content.overview.toLowerCase().includes(searchLower) ||
-          content.tags.some((tag) => tag.toLowerCase().includes(searchLower))
-        );
-      })
+      const searchLower = searchQuery.toLowerCase();
+      return (
+        content.title.toLowerCase().includes(searchLower) ||
+        content.overview.toLowerCase().includes(searchLower) ||
+        content.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+      );
+    })
     : methodContents;
 
   const handleSearch = () => {
@@ -152,12 +152,15 @@ const Methods = () => {
               overflow="hidden"
               variant="outline"
             >
-              <Image
-                objectFit="cover"
-                maxW={{ base: "100%", sm: "200px" }}
-                src={content.image || "https://bit.ly/dan-abramov"}
-                alt={content.title}
-              />
+              {content.image && (
+                <Image
+                  objectFit="cover"
+                  w={{ base: "100%", sm: "200px" }}
+                  h={{ base: "200px", sm: "200px" }}
+                  src={content.image}
+                  alt={content.title}
+                />
+              )}
 
               <Stack>
                 <CardBody>

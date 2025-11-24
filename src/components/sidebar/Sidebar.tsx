@@ -1,4 +1,3 @@
-import "./Sidebar.css";
 import {
   Box,
   Flex,
@@ -6,6 +5,7 @@ import {
   useColorModeValue,
   FlexProps,
   VStack,
+  Text,
 } from "@chakra-ui/react";
 import { FiHome, FiStar, FiCompass, FiTrendingUp } from "react-icons/fi";
 import { IconType } from "react-icons";
@@ -26,22 +26,24 @@ const LinkItem: Array<LinkItemProps> = [
 ];
 
 const Sidebar = () => {
-  const bgColor = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const bg = useColorModeValue("white", "slate.900");
+  const borderColor = useColorModeValue("slate.200", "slate.700");
 
   return (
     <Box
       position="fixed"
       left={0}
-      top={16}
-      h="calc(100vh - 64px)"
-      w={{ base: "full", md: 60 }}
-      bg={bgColor}
+      top={0}
+      h="100vh"
+      w={{ base: "full", md: 64 }}
+      bg={bg}
       borderRight="1px"
       borderColor={borderColor}
       zIndex={5}
+      pt={20} // Space for header
+      display={{ base: "none", md: "block" }}
     >
-      <VStack spacing={1} align="stretch" p={2}>
+      <VStack spacing={2} align="stretch" p={4}>
         {LinkItem.map((link) => (
           <NavItem key={link.name} icon={link.icon} url={link.url}>
             {link.name}
@@ -60,37 +62,42 @@ interface NavItemProps extends FlexProps {
 
 const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
   const location = useLocation();
-  const hoverBg = useColorModeValue("blue.50", "blue.900");
-  const hoverColor = useColorModeValue("blue.600", "blue.200");
   const isActive = location.pathname === url;
+  const activeBg = useColorModeValue("brand.50", "brand.900");
+  const activeColor = useColorModeValue("brand.600", "brand.200");
+  const hoverBg = useColorModeValue("slate.50", "slate.800");
 
   return (
     <Link to={url || "#"} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
-        p="4"
-        mx="2"
-        borderRadius="lg"
+        p="3"
+        mx="0"
+        borderRadius="md"
         role="group"
         cursor="pointer"
-        fontWeight={isActive ? "bold" : "normal"}
+        bg={isActive ? activeBg : "transparent"}
+        color={isActive ? activeColor : "inherit"}
+        fontWeight={isActive ? "bold" : "medium"}
+        transition="all 0.2s"
         _hover={{
-          bg: hoverBg,
-          color: hoverColor,
+          bg: isActive ? activeBg : hoverBg,
+          color: isActive ? activeColor : "brand.500",
         }}
         {...rest}
       >
         {icon && (
           <Icon
             mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: hoverColor,
-            }}
+            fontSize="18"
             as={icon}
+            color={isActive ? activeColor : "slate.400"}
+            _groupHover={{
+              color: isActive ? activeColor : "brand.500",
+            }}
           />
         )}
-        {children}
+        <Text fontSize="sm">{children}</Text>
       </Flex>
     </Link>
   );

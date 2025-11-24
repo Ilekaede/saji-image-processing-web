@@ -13,25 +13,21 @@ const Footer = () => {
     <Box
       borderTopWidth={1}
       borderStyle={"solid"}
-      borderColor={useColorModeValue("gray.200", "gray.700")}
-      bg={useColorModeValue("gray.100", "gray.900")}
-      position="relative"
-      bottom="0"
-      width="100%"
+      borderColor={useColorModeValue("slate.200", "slate.700")}
+      bg={useColorModeValue("white", "slate.900")}
+      color={useColorModeValue("slate.600", "slate.400")}
     >
       <Container
         as={Stack}
         maxW={"6xl"}
-        py={4}
+        py={6}
         direction={{ base: "column", md: "row" }}
         spacing={4}
-        justify={{ md: "space-between" }}
-        align={{ md: "center" }}
+        justify="center"
+        align="center"
       >
-        <Text>
-          {" "}
-          &emsp;&emsp;&emsp;&emsp;&emsp; © 2024 Hitoshi Sauji. All rights
-          reserved
+        <Text fontSize="sm">
+          © 2024 Hitoshi Sauji. All rights reserved
         </Text>
       </Container>
     </Box>

@@ -17,8 +17,7 @@ type HeaderProps = {
 };
 
 const Header = ({ title }: HeaderProps) => {
-  const bgColor = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const bg = useColorModeValue("rgba(255, 255, 255, 0.8)", "rgba(26, 32, 44, 0.8)");
 
   return (
     <Box
@@ -28,15 +27,18 @@ const Header = ({ title }: HeaderProps) => {
       left={0}
       right={0}
       zIndex={10}
-      bg={bgColor}
+      bg={bg}
+      backdropFilter="blur(10px)"
       borderBottom="1px"
-      borderColor={borderColor}
+      borderColor="transparent"
+      boxShadow="sm"
       px={4}
       py={2}
+      transition="all 0.2s"
     >
       <Flex justify="space-between" align="center" maxW="1200px" mx="auto">
         <Link to="/">
-          <Heading size="md" _hover={{ color: "blue.500" }}>
+          <Heading size="md" color="brand.600" _hover={{ color: "brand.500" }}>
             {title}
           </Heading>
         </Link>
@@ -50,6 +52,8 @@ const Header = ({ title }: HeaderProps) => {
             icon={<FontAwesomeIcon icon={faGithub} />}
             variant="ghost"
             size="md"
+            color="slate.600"
+            _hover={{ bg: "brand.50", color: "brand.600" }}
           />
           <IconButton
             as="a"
@@ -60,6 +64,8 @@ const Header = ({ title }: HeaderProps) => {
             icon={<FontAwesomeIcon icon={faXTwitter} />}
             variant="ghost"
             size="md"
+            color="slate.600"
+            _hover={{ bg: "brand.50", color: "brand.600" }}
           />
           <IconButton
             as="a"
@@ -76,6 +82,7 @@ const Header = ({ title }: HeaderProps) => {
             }
             variant="ghost"
             size="md"
+            _hover={{ bg: "brand.50" }}
           />
         </HStack>
       </Flex>

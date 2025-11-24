@@ -24,6 +24,7 @@ export const methodMetadata = {
   title: "深層学習と画像処理",
   overview: "まとめる",
   tags: ["画像処理", "深層学習"],
+  image: deepLearing,
 };
 
 const Method3 = () => {

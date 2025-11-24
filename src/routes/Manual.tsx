@@ -96,15 +96,15 @@ const Manual = () => {
           <Text fontSize="2xl" fontWeight="bold">
             デジタル画像とは
           </Text>
-          <Text fontSize="md" lineHeight={1.9}>
-            デジタル画像は均一格子状に並んだ画素（Pixel）の集合で、離散 2
+          <Box fontSize="md" lineHeight={1.9}>
+            デジタル画像は均一格子状に並んだ画素(Pixel)の集合で、離散 2
             次元座標の行列として表されます。
             <BlockMath
               math={"I = [I(x, y)]\\quad(x=1\\ldots W,\\;y=1\\ldots H)"}
             />
-            各画素値 <InlineMath math={"I(x, y)"} /> は色（RGB
-            など）だけでなく、標高や近赤外強度などシーンに応じた実数を格納することもできます。
-          </Text>
+            各画素値 <InlineMath math={"I(x, y)"} /> は色(RGB
+            など)だけでなく、標高や近赤外強度などシーンに応じた実数を格納することもできます。
+          </Box>
           <Text fontSize="md">
             1 画素は通常 8 ビット（0–255）で表現され、0 に近いほど黒、255
             に近いほど白。赤・緑・青の 3
