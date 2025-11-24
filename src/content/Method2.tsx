@@ -164,7 +164,7 @@ const Method2 = () => {
           borderRadius="lg"
           boxShadow="lg"
         >
-          <source src="/videos/comparison.webm" type="video/webm" />
+          <source src={`${process.env.PUBLIC_URL}/videos/comparison.webm`} type="video/webm" />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
         <Text fontSize="md" color="gray.600">

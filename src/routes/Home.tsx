@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { AnimatedText } from "../components/AnimatedText";
 
 const videoList = [
-  "/videos/fish_detection.mp4",
-  "/videos/fox_pose_estimated.mp4",
+  `${process.env.PUBLIC_URL}/videos/fish_detection.mp4`,
+  `${process.env.PUBLIC_URL}/videos/fox_pose_estimated.mp4`,
 ];
 
 const Home = () => {
