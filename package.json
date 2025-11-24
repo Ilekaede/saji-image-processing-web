@@ -1,6 +1,7 @@
 {
   "name": "b3semi_web",
   "version": "0.1.0",
+  "homepage": "https://ilekaede.github.io/saji-image-processing-web",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
