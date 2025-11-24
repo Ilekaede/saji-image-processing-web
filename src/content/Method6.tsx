@@ -203,8 +203,8 @@ const Method6 = () => {
           borderRadius="lg"
           boxShadow="lg"
         >
-          <source src="/videos/output.mp4" type="video/mp4" />
-          <source src="/videos/output.webm" type="video/webm" />
+          <source src={`${process.env.PUBLIC_URL}/videos/output.mp4`} type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/videos/output.webm`} type="video/webm" />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
         <HStack spacing={2}>

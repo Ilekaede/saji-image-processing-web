@@ -149,7 +149,7 @@ const Manual = () => {
           _hover={{ filter: "none" }}
           filter="brightness(0.9)"
         >
-          <source src="/videos/raccoon_tracked_cutted.mp4" type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/videos/raccoon_tracked_cutted.mp4`} type="video/mp4" />
         </Box>
         <Icon
           as={FaPlayCircle}
