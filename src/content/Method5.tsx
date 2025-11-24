@@ -30,6 +30,7 @@ export const methodMetadata = {
   title: "ノイズ除去を除去したい -フィルタ編-",
   overview: "なかなか注目がいかないノイズ除去について述べる．実はかなり重要",
   tags: ["画像処理", "ノイズ"],
+  image: Lenna,
 };
 
 const Method5 = () => {
