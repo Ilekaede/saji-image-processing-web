@@ -25,6 +25,7 @@ export const methodMetadata = {
   title: "ハフ変換",
   overview: "ハフ変換とは〜",
   tags: ["画像処理", "ハフ変換"],
+  image: AbemaBag,
 };
 
 const Method4 = () => {
@@ -103,7 +104,7 @@ const Method4 = () => {
           <Text fontSize="lg" fontWeight="bold" mb={2}>
             直線におけるハフ変換
           </Text>
-          <Text fontSize="md" lineHeight="1.8">
+          <Box fontSize="md" lineHeight="1.8">
             直線は、次のような一般的な方程式で表されます：
             <br />
             <BlockMath math={"y = ax + b"} />
@@ -122,7 +123,7 @@ const Method4 = () => {
             <InlineMath math="r" /> と
             <InlineMath math={"\\theta"} />
             ）に変換できます。
-          </Text>
+          </Box>
         </ListItem>
       </List>
 
