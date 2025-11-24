@@ -1,7 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-public/
-
+# Ignore video files
+*.mp4
+*.webm
+*.avi
+*.mov
+*.mkv
 # dependencies
 /node_modules
 /.pnp
