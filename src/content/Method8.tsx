@@ -208,7 +208,7 @@ const Method9 = () => {
                     boxShadow="lg"
                 >
                     <source
-                        src={`${process.env.PUBLIC_URL}/videos/optical_flow_farneback.webm`}
+                        src={`${process.env.PUBLIC_URL}/videos/method8_1.webm`}
                         type="video/webm"
                     />
                     お使いのブラウザは動画の再生に対応していません。
@@ -294,7 +294,7 @@ const Method9 = () => {
                     boxShadow="lg"
                 >
                     <source
-                        src={`${process.env.PUBLIC_URL}/videos/optical_flow_lucas_kanade.webm`}
+                        src={`${process.env.PUBLIC_URL}/videos/method8_2.webm`}
                         type="video/webm"
                     />
                     お使いのブラウザは動画の再生に対応していません。

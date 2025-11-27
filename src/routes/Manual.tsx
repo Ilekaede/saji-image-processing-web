@@ -169,7 +169,7 @@ const Manual = () => {
           onPause={handlePause}
           onClick={handleVideoClick}
         >
-          <source src={`${process.env.PUBLIC_URL}/videos/raccoon_tracked_cutted.mp4`} type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/videos/manual_1.webm`} type="video/webm" />
         </Box>
 
         {/* オーバーレイ（再生中 + ホバー時） */}
