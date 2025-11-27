@@ -28,6 +28,7 @@
    - 新しいブランチの作成
    - コードの実装
    - ローカルでのビルド確認
+   - 実装後にコードのレビューを必ず実施
 
 3. **Testing（テスト）**
    - 機能テストの実行
@@ -287,19 +288,6 @@ npm run build
 
 `App.tsx`:
 
-```tsx
-<Router basename={process.env.PUBLIC_URL}>
-```
-
-### 404リダイレクト対応
-
-SPAのルーティングをGitHub Pagesで動作させるため:
-
-1. `public/404.html`: 404エラー時にURLを保存してルートにリダイレクト
-2. `public/index.html`: 保存したURLを復元
-3. React Routerが正しいページを表示
-
-詳細: [docs/issue-48-404-redirect-solution.md](docs/issue-48-404-redirect-solution.md)
 
 ---
 
@@ -315,15 +303,7 @@ ffmpeg -i input.mp4 -vcodec libx264 -crf 28 -preset medium output.mp4
 # WebPフォーマットの使用を推奨
 ```
 
-### 2. パスの指定
-
-```tsx
-// ✅ Good: PUBLIC_URLを使用
-<source src={`${process.env.PUBLIC_URL}/videos/video.mp4`} />
-
-// ❌ Bad: 絶対パス
-<source src="/videos/video.mp4" />
-```
+### 2. 
 
 ### 3. 状態管理
 
@@ -347,32 +327,6 @@ const handlePlay = () => setIsPlaying(true);
 <Image src={image} alt="説明" />
 ```
 
----
-
-## トラブルシューティング
-
-### よくある問題
-
-#### 1. ビルドエラー
-
-```bash
-# node_modulesを削除して再インストール
-rm -rf node_modules package-lock.json
-npm install
-```
-
-#### 2. 404エラー（GitHub Pages）
-
-- `basename`が正しく設定されているか確認
-- `404.html`と`index.html`のリダイレクトスクリプトを確認
-
-#### 3. 動画が表示されない
-
-- `PUBLIC_URL`を使用しているか確認
-- ファイルが`public/videos/`に存在するか確認
-- `.gitignore`で除外されていないか確認
-
----
 
 ## 参考リンク
 
