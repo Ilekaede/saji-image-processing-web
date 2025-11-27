@@ -2,6 +2,10 @@
 
 このドキュメントは、本プロジェクトの開発ワークフロー、コーディング規約、ベストプラクティスをまとめたものです。
 
+
+# 必須項目
+- やりとりはすべて日本語で行ってください。
+
 ## 目次
 
 - [開発ワークフロー](#開発ワークフロー)
@@ -61,6 +65,8 @@ feature/<issue-number>-<short-description>
 
 ### ブランチ作成
 
+- 作業用のブランチを作成し、その中で実装を行います。実装の始まりには必ずmainブランチから作業ブランチを切ってください。
+
 ```bash
 # mainブランチから最新を取得
 git checkout main
@@ -97,14 +103,11 @@ git checkout -b feature/<issue-number>-<description>
 ### コミットメッセージ例
 
 ```bash
-git commit -m "feat: implement YouTube-like video player UX (Issue #33)
-
-- Add state management for play/pause and hover states
-- Show play/pause button only on hover
-- Add dark overlay when hovering over playing video
-- Remove default video controls for custom UX
-- All test cases passed successfully"
+git commit -m "ref #11 fix: 画像の変換処理が正しく行われない問題を修正"
 ```
+
+- refの後ろの番号はissues番号です
+- コミットメッセージの先頭には必ず`fix`、`feat`、`docs`、`style`、`refactor`、`test`、`chore`のいずれかを指定してください。
 
 ---
 
