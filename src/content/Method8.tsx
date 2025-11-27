@@ -4,9 +4,6 @@ import React from "react";
 import {
     Box,
     Text,
-    List,
-    ListItem,
-    Flex,
     Table,
     Thead,
     Tbody,
@@ -14,6 +11,9 @@ import {
     Th,
     Td,
     TableContainer,
+    List,
+    ListItem,
+    VStack,
     Heading,
 } from "@chakra-ui/react";
 import { InlineMath, BlockMath } from "react-katex";
@@ -22,58 +22,29 @@ import { InlineMath, BlockMath } from "react-katex";
 export const methodMetadata = {
     id: 8,
     title: "オプティカルフロー",
-    overview: "動画像内のピクセルの動きを推定する基本技術",
-    tags: ["画像処理", "動画像処理", "オプティカルフロー"],
-    searchableContent: "オプティカルフロー optical flow Lucas-Kanade Farneback 動き推定 輝度一定性 疎密 物体追跡 動画処理",
-    // image: opticalFlowImage, // TODO: Add image
+    overview:
+        "動画内の物体の動きをベクトル場として可視化し、密と疎の2つのアプローチを学ぶ",
+    tags: ["画像処理", "オプティカルフロー", "動き推定"],
+    searchableContent:
+        "オプティカルフロー optical flow 動き検出 Farneback Lucas-Kanade 密 疎 ベクトル場 動き推定 フロー 特徴点追跡 動画処理 モーション",
 };
 
-const Method8 = () => {
-    const comparisonData = [
-        {
-            feature: "計算範囲",
-            lucasKanade: "特徴点のみ（疎）",
-            farneback: "全ピクセル（密）",
-        },
-        {
-            feature: "計算速度",
-            lucasKanade: "高速",
-            farneback: "低速",
-        },
-        {
-            feature: "精度",
-            lucasKanade: "特徴点で高精度",
-            farneback: "全体的に滑らか",
-        },
-        {
-            feature: "用途",
-            lucasKanade: "物体追跡、特徴点追跡",
-            farneback: "動き解析、ビデオ安定化",
-        },
-    ];
-
+const Method9 = () => {
     return (
         <Box p={4} maxW="1200px" mx="auto">
-            <Flex
-                direction={{ base: "column", md: "row" }}
-                align={{ base: "center", md: "flex-start" }}
-                gap={6}
-                mb={8}
+            <Text
+                as="h1"
+                fontSize="3xl"
+                fontWeight="bold"
+                fontFamily="Arial"
+                mb={4}
             >
-                <Text
-                    as="h1"
-                    fontSize="3xl"
-                    fontWeight="bold"
-                    fontFamily="Arial"
-                    mb={4}
-                >
-                    {methodMetadata.title}
-                </Text>
-            </Flex>
+                {methodMetadata.title}
+            </Text>
 
             <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-                オプティカルフロー（Optical Flow）は、動画像処理における基本的な技術の一つで、連続するフレーム間でのピクセルの動きを推定する手法です。
-                カメラや物体の動きによって生じる画像上の見かけの動きを、ベクトル場として表現します。
+                オプティカルフロー（Optical
+                Flow）は、動画内の各ピクセルまたは特徴点の動きをベクトル場として表現する技術です。連続するフレーム間での物体の移動を検出し、動きの方向と速度を可視化することで、動画解析の基礎となります。
             </Text>
 
             <Text
@@ -86,87 +57,38 @@ const Method8 = () => {
             >
                 オプティカルフローとは
             </Text>
+
             <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-                オプティカルフローは、時刻<InlineMath math="t" />における画像上の点
-                <InlineMath math="(x, y)" />が、時刻<InlineMath math="t + \Delta t" />
-                においてどこに移動したかを示す変位ベクトル
-                <InlineMath math="(u, v)" />
-                として表現されます。このベクトル場を求めることで、画像内の動きを定量的に解析できます。
+                オプティカルフローは、時刻
+                <InlineMath math="t" />と時刻
+                <InlineMath math="t+1" />
+                の2つのフレーム間で、各ピクセルがどの方向にどれだけ移動したかを表すベクトル場です。このベクトル場を解析することで、以下のような応用が可能になります：
             </Text>
 
-            <Text
-                as="h2"
-                fontSize="2xl"
-                fontWeight="bold"
-                fontFamily="Arial"
-                mt={8}
-                mb={4}
-            >
-                数学的基礎
-            </Text>
-
-            <List spacing={4} styleType="decimal" pl={4} mb={6}>
+            <List spacing={3} styleType="disc" pl={6} mb={6}>
                 <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        輝度一定性の仮定
-                    </Text>
-                    <Box fontSize="md" lineHeight="1.8">
-                        オプティカルフローの計算では、物体が移動しても輝度値は変化しないという仮定を置きます：
-                        <BlockMath math="I(x, y, t) = I(x + u, y + v, t + \Delta t)" />
-                        ここで、<InlineMath math="I(x, y, t)" />
-                        は時刻<InlineMath math="t" />における座標
-                        <InlineMath math="(x, y)" />の輝度値です。
-                    </Box>
-                </ListItem>
-
-                <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        オプティカルフロー方程式
-                    </Text>
-                    <Box fontSize="md" lineHeight="1.8">
-                        上記の仮定をテイラー展開し、1次の項まで考慮すると、以下の式が得られます：
-                        <BlockMath math="I_x u + I_y v + I_t = 0" />
-                        ここで、<InlineMath math="I_x, I_y" />は空間微分、
-                        <InlineMath math="I_t" />
-                        は時間微分を表します。この式は1つの方程式に対して2つの未知数
-                        <InlineMath math="(u, v)" />
-                        があるため、単独では解けません。これを
-                        <strong>アパーチャ問題</strong>と呼びます。
-                    </Box>
-                </ListItem>
-            </List>
-
-            <Text
-                as="h2"
-                fontSize="2xl"
-                fontWeight="bold"
-                fontFamily="Arial"
-                mt={8}
-                mb={4}
-            >
-                オプティカルフローの種類
-            </Text>
-
-            <List spacing={4} styleType="decimal" pl={4} mb={8}>
-                <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        疎なオプティカルフロー（Sparse Optical Flow）
-                    </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        画像内の特徴点（コーナーやエッジなど）のみでフローを計算します。
-                        代表的な手法として<strong>Lucas-Kanade法</strong>
-                        があります。計算コストが低く、リアルタイム処理に適しています。
+                        <strong>物体追跡</strong> - 動画内の特定物体の動きを追跡
                     </Text>
                 </ListItem>
-
                 <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        密なオプティカルフロー（Dense Optical Flow）
-                    </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        画像内の全ピクセルでフローを計算します。代表的な手法として
-                        <strong>Farneback法</strong>
-                        があります。全体的な動きを詳細に把握できますが、計算コストが高くなります。
+                        <strong>動き検出</strong> - 監視カメラでの異常検知
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="md" lineHeight="1.8">
+                        <strong>動画安定化</strong> - 手ぶれ補正
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="md" lineHeight="1.8">
+                        <strong>3D復元</strong> - カメラの動きから3次元構造を推定
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="md" lineHeight="1.8">
+                        <strong>行動認識</strong> - 人の動作パターンの解析
                     </Text>
                 </ListItem>
             </List>
@@ -179,90 +101,52 @@ const Method8 = () => {
                 mt={8}
                 mb={4}
             >
-                代表的なアルゴリズム
+                密なフローと疎なフロー
             </Text>
 
-            <List spacing={6} styleType="decimal" pl={4} mb={8}>
-                <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        Lucas-Kanade法
-                    </Text>
-                    <Text fontSize="md" lineHeight="1.8" mb={2}>
-                        局所的な領域（ウィンドウ）内では動きが一定であると仮定し、最小二乗法によってフローを推定します。
-                    </Text>
-                    <Text fontSize="md" fontWeight="bold" mb={1}>
-                        特徴：
-                    </Text>
-                    <List spacing={2} styleType="disc" pl={6}>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                特徴点の追跡に適している
-                            </Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                計算が高速で、リアルタイム処理が可能
-                            </Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                小さな動きに対して有効
-                            </Text>
-                        </ListItem>
-                    </List>
-                </ListItem>
-
-                <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        Farneback法
-                    </Text>
-                    <Text fontSize="md" lineHeight="1.8" mb={2}>
-                        画像を多項式で近似し、その係数を用いて密なフローを計算します。
-                    </Text>
-                    <Text fontSize="md" fontWeight="bold" mb={1}>
-                        特徴：
-                    </Text>
-                    <List spacing={2} styleType="disc" pl={6}>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                全ピクセルでフローを計算
-                            </Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                滑らかなフロー場が得られる
-                            </Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text fontSize="md" lineHeight="1.8">
-                                動きの可視化や解析に適している
-                            </Text>
-                        </ListItem>
-                    </List>
-                </ListItem>
-            </List>
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+                オプティカルフローには、大きく分けて2つのアプローチがあります：
+            </Text>
 
             <Box p={6} borderWidth="1px" borderRadius="lg" boxShadow="md" mb={8}>
                 <Heading size="md" mb={4}>
-                    Lucas-Kanade法 vs Farneback法
+                    密なフロー vs 疎なフロー
                 </Heading>
                 <TableContainer>
-                    <Table variant="striped" colorScheme="gray">
+                    <Table variant="striped" colorScheme="blue">
                         <Thead>
                             <Tr>
                                 <Th>特徴</Th>
-                                <Th>Lucas-Kanade法</Th>
-                                <Th>Farneback法</Th>
+                                <Th>密なフロー（Dense）</Th>
+                                <Th>疎なフロー（Sparse）</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {comparisonData.map((row) => (
-                                <Tr key={row.feature}>
-                                    <Td fontWeight="bold">{row.feature}</Td>
-                                    <Td>{row.lucasKanade}</Td>
-                                    <Td>{row.farneback}</Td>
-                                </Tr>
-                            ))}
+                            <Tr>
+                                <Td fontWeight="bold">計算対象</Td>
+                                <Td>全ピクセル</Td>
+                                <Td>特徴点のみ</Td>
+                            </Tr>
+                            <Tr>
+                                <Td fontWeight="bold">代表的手法</Td>
+                                <Td>Farneback法</Td>
+                                <Td>Lucas-Kanade法</Td>
+                            </Tr>
+                            <Tr>
+                                <Td fontWeight="bold">計算コスト</Td>
+                                <Td>高い</Td>
+                                <Td>低い</Td>
+                            </Tr>
+                            <Tr>
+                                <Td fontWeight="bold">情報量</Td>
+                                <Td>全体の動きを詳細に把握</Td>
+                                <Td>重要な点の動きのみ</Td>
+                            </Tr>
+                            <Tr>
+                                <Td fontWeight="bold">用途</Td>
+                                <Td>動き解析、セグメンテーション</Td>
+                                <Td>物体追跡、カメラ推定</Td>
+                            </Tr>
                         </Tbody>
                     </Table>
                 </TableContainer>
@@ -276,55 +160,236 @@ const Method8 = () => {
                 mt={8}
                 mb={4}
             >
-                応用例
+                Farneback法（密なオプティカルフロー）
+            </Text>
+
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+                Farneback法は、画像全体のピクセルに対してオプティカルフローを計算する手法です。各ピクセルの近傍を2次多項式で近似し、その係数から動きベクトルを推定します。
+            </Text>
+
+            <List spacing={4} styleType="decimal" pl={4} mb={6}>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        多項式展開
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        各ピクセルの近傍を2次多項式で近似します。これにより、局所的な画像構造を数学的に表現できます。
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        ピラミッド処理
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        画像を複数のスケールで処理することで、大きな動きにも対応できます。粗いスケールから細かいスケールへと段階的に推定を行います。
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        HSVカラーマップでの可視化
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        動きの方向を色相（Hue）、速度を明度（Value）で表現することで、直感的に理解できる可視化が可能です。
+                    </Text>
+                </ListItem>
+            </List>
+
+            <VStack spacing={4} mt={6} mb={8}>
+                <Text fontSize="lg" fontWeight="bold">
+                    Farneback法による密なオプティカルフロー
+                </Text>
+                <Box
+                    as="video"
+                    controls
+                    width="100%"
+                    maxW="800px"
+                    height="auto"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                >
+                    <source
+                        src={`${process.env.PUBLIC_URL}/videos/optical_flow_farneback.webm`}
+                        type="video/webm"
+                    />
+                    お使いのブラウザは動画の再生に対応していません。
+                </Box>
+                <Text fontSize="md" color="gray.600">
+                    左：元映像　右：Farneback法による密なフロー可視化
+                </Text>
+                <Text fontSize="sm" color="gray.500" fontStyle="italic">
+                    色が動きの方向を、明るさが速度を表しています
+                </Text>
+            </VStack>
+
+            <Text
+                as="h2"
+                fontSize="2xl"
+                fontWeight="bold"
+                fontFamily="Arial"
+                mt={8}
+                mb={4}
+            >
+                Lucas-Kanade法（疎なオプティカルフロー）
+            </Text>
+
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+                Lucas-Kanade法は、画像内の特徴的な点（コーナーなど）のみを追跡する手法です。Shi-Tomasiのコーナー検出で特徴点を抽出し、それらの点の動きを追跡します。
+            </Text>
+
+            <List spacing={4} styleType="decimal" pl={4} mb={6}>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        特徴点検出（Shi-Tomasi法）
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        画像内で追跡に適した特徴点（コーナー）を自動的に検出します。これらの点は、周囲と明確に区別できる特徴を持っています。
+                    </Text>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        局所的な動き推定
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        各特徴点の小さな近傍領域で、以下の仮定に基づいて動きを推定します：
+                    </Text>
+                    <List spacing={2} styleType="circle" pl={6} mt={2}>
+                        <ListItem>
+                            <Text fontSize="md" lineHeight="1.8">
+                                <strong>輝度一定性</strong>: 物体の輝度は時間変化しない
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text fontSize="md" lineHeight="1.8">
+                                <strong>空間一貫性</strong>: 近傍のピクセルは同じ動きをする
+                            </Text>
+                        </ListItem>
+                        <ListItem>
+                            <Text fontSize="md" lineHeight="1.8">
+                                <strong>時間連続性</strong>: 動きは滑らかに変化する
+                            </Text>
+                        </ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>
+                    <Text fontSize="lg" fontWeight="bold" mb={2}>
+                        軌跡の可視化
+                    </Text>
+                    <Text fontSize="md" lineHeight="1.8">
+                        各特徴点の移動経路を線で表示することで、物体の動きを直感的に理解できます。
+                    </Text>
+                </ListItem>
+            </List>
+
+            <VStack spacing={4} mt={6} mb={8}>
+                <Text fontSize="lg" fontWeight="bold">
+                    Lucas-Kanade法による疎なオプティカルフロー
+                </Text>
+                <Box
+                    as="video"
+                    controls
+                    width="100%"
+                    maxW="800px"
+                    height="auto"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                >
+                    <source
+                        src={`${process.env.PUBLIC_URL}/videos/optical_flow_lucas_kanade.webm`}
+                        type="video/webm"
+                    />
+                    お使いのブラウザは動画の再生に対応していません。
+                </Box>
+                <Text fontSize="md" color="gray.600">
+                    左：元映像　右：Lucas-Kanade法による特徴点追跡
+                </Text>
+                <Text fontSize="sm" color="gray.500" fontStyle="italic">
+                    カラフルな線が各特徴点の軌跡を表しています
+                </Text>
+            </VStack>
+
+            <Text
+                as="h2"
+                fontSize="2xl"
+                fontWeight="bold"
+                fontFamily="Arial"
+                mt={8}
+                mb={4}
+            >
+                オプティカルフローの数学的背景
+            </Text>
+
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={4}>
+                オプティカルフローの基本的な仮定は、<strong>輝度一定性</strong>
+                です。時刻<InlineMath math="t" />での位置
+                <InlineMath math="(x, y)" />のピクセルが、時刻
+                <InlineMath math="t+1" />で位置
+                <InlineMath math="(x+dx, y+dy)" />
+                に移動したとき、その輝度は変化しないと仮定します：
+            </Text>
+
+            <Box mb={6}>
+                <BlockMath math="I(x, y, t) = I(x+dx, y+dy, t+1)" />
+            </Box>
+
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={4}>
+                これをテイラー展開すると、以下の<strong>オプティカルフロー方程式</strong>
+                が得られます：
+            </Text>
+
+            <Box mb={6}>
+                <BlockMath math="\frac{\partial I}{\partial x}u + \frac{\partial I}{\partial y}v + \frac{\partial I}{\partial t} = 0" />
+            </Box>
+
+            <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
+                ここで、<InlineMath math="u = dx/dt" />と
+                <InlineMath math="v = dy/dt" />
+                は動きベクトルの成分です。この方程式は1つの式に2つの未知数があるため、そのままでは解けません（
+                <strong>開口問題</strong>
+                ）。そこで、追加の制約条件を導入することで解を求めます。
+            </Text>
+
+            <Text
+                as="h2"
+                fontSize="2xl"
+                fontWeight="bold"
+                fontFamily="Arial"
+                mt={8}
+                mb={4}
+            >
+                実世界での応用例
             </Text>
 
             <List spacing={4} styleType="decimal" pl={4} mb={8}>
                 <ListItem>
                     <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        物体追跡
+                        自動運転
                     </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        動画内の物体を追跡する際に、オプティカルフローを用いて物体の移動方向と速度を推定します。
-                        特徴点ベースの追跡では、Lucas-Kanade法がよく使用されます。
+                        周囲の車両や歩行者の動きを検出し、衝突回避や経路計画に活用されます。
                     </Text>
                 </ListItem>
-
                 <ListItem>
                     <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        動き検出
+                        スポーツ分析
                     </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        フローベクトルの大きさを閾値処理することで、動いている領域を検出できます。
-                        監視カメラでの異常検知などに応用されます。
+                        選手の動きを追跡し、フォーム分析やパフォーマンス評価に利用されます。
                     </Text>
                 </ListItem>
-
                 <ListItem>
                     <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        ビデオ安定化
+                        医療画像診断
                     </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        カメラの手ブレによる動きをオプティカルフローで推定し、補正することで、安定した映像を得ることができます。
+                        心臓の動きや血流の解析など、動的な生体情報の可視化に使用されます。
                     </Text>
                 </ListItem>
-
                 <ListItem>
                     <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        交通流解析
+                        ロボットビジョン
                     </Text>
                     <Text fontSize="md" lineHeight="1.8">
-                        道路上の車両の動きをオプティカルフローで解析し、交通量や渋滞の検出に利用します。
-                        佐治研究室では、ドライブレコーダー映像や定点カメラ映像を用いた交通流解析にオプティカルフローが活用されています。
-                    </Text>
-                </ListItem>
-
-                <ListItem>
-                    <Text fontSize="lg" fontWeight="bold" mb={2}>
-                        行動認識
-                    </Text>
-                    <Text fontSize="md" lineHeight="1.8">
-                        人間の動作パターンをオプティカルフローで捉え、行動認識や異常行動検知に応用します。
+                        ロボットが環境内の物体の動きを認識し、適切に反応するために利用されます。
                     </Text>
                 </ListItem>
             </List>
@@ -339,30 +404,36 @@ const Method8 = () => {
             >
                 課題
             </Text>
-            <List spacing={3} styleType="decimal" pl={4} mb={8}>
+
+            <List spacing={4} styleType="decimal" pl={4} mb={8}>
                 <ListItem>
-                    Lucas-Kanade法とFarneback法の違いを理解し、それぞれの利点と欠点をまとめなさい。
+                    <Text fontSize="md" lineHeight="1.8">
+                        Farneback法とLucas-Kanade法の動画を見比べて、それぞれの特徴と違いをまとめなさい。特に、どのような場面でどちらの手法が適しているか考察してください。
+                    </Text>
                 </ListItem>
                 <ListItem>
-                    オプティカルフローの計算において、輝度一定性の仮定が成り立たない場合を考え、その対処法を調べなさい。
+                    <Text fontSize="md" lineHeight="1.8">
+                        オプティカルフローの基本仮定である「輝度一定性」が成り立たない状況を3つ挙げ、それぞれの場合にどのような問題が発生するか説明しなさい。
+                    </Text>
                 </ListItem>
                 <ListItem>
-                    実際の動画に対してオプティカルフローを計算し、その結果を可視化してみなさい。
-                    OpenCVのcalcOpticalFlowPyrLK（Lucas-Kanade）やcalcOpticalFlowFarneback関数を使用すると良い。
+                    <Text fontSize="md" lineHeight="1.8">
+                        実際に動画を用意し、OpenCVを使ってオプティカルフローを計算するプログラムを作成しなさい。パラメータを変更して、結果がどのように変化するか実験してください。
+                    </Text>
                 </ListItem>
                 <ListItem>
-                    <strong>応用課題</strong>
-                    ：オプティカルフローを用いて、動画内の動いている物体を検出するプログラムを作成しなさい。
+                    <Text fontSize="md" lineHeight="1.8">
+                        <strong>応用課題</strong>
+                        ：オプティカルフローを利用して、動画内の特定の物体を自動的に追跡するプログラムを作成しなさい。背景差分法と組み合わせることで、より高精度な追跡が可能になります。
+                    </Text>
                 </ListItem>
             </List>
 
             <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-                オプティカルフローは、動画像処理の基礎となる重要な技術です。
-                特に、物体追跡や動き解析など、時系列データを扱う研究において欠かせない手法となっています。
-                実際に手を動かして実装することで、理解を深めましょう。
+                オプティカルフローは、動画解析の基礎となる重要な技術です。密なフローと疎なフローの特性を理解し、目的に応じて適切な手法を選択できるようになりましょう。
             </Text>
         </Box>
     );
 };
 
-export default Method8;
+export default Method9;
