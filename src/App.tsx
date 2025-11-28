@@ -8,12 +8,14 @@ import Research from "./routes/Research";
 import Methods from "./routes/Methods";
 import Footer from "./components/footer/footer";
 import MethodDetail from "./components/methodDetail/MethodDetail";
+import ScrollToTop from "./components/layout/ScrollToTop";
 import { Box } from "@chakra-ui/react";
 import "katex/dist/katex.mjs";
 
 const App = () => {
   return (
     <Router basename={process.env.PUBLIC_URL}>
+      <ScrollToTop />
       <Box minH="100vh" bg="slate.50">
         <Header title="（非公式）- 佐治研画像処理学習キット -" />
         <Sidebar />
