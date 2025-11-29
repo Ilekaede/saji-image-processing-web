@@ -1,12 +1,10 @@
 // 特徴点マッチングについて
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   Box,
   Text,
   VStack,
-  Button,
-  HStack,
   List,
   ListItem,
   Flex,
@@ -58,14 +56,13 @@ const detectorData = [
 
 const Method6 = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [currentSpeed, setCurrentSpeed] = useState(1.0);
 
-  const handleSpeedChange = (speed: number) => {
+  // 動画読み込み時に再生速度を0.5倍に設定
+  useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = speed;
-      setCurrentSpeed(speed);
+      videoRef.current.playbackRate = 0.5;
     }
-  };
+  }, []);
 
   return (
     <Box p={4} maxW="1200px" mx="auto">
@@ -207,27 +204,8 @@ const Method6 = () => {
           <source src={`${process.env.PUBLIC_URL}/videos/method6_1.webm`} type="video/webm" />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
-        <HStack spacing={2}>
-          <Text fontSize="md">再生速度:</Text>
-          <Button
-            size="sm"
-            onClick={() => handleSpeedChange(0.5)}
-            border={currentSpeed === 0.5 ? "2px solid" : "none"}
-            borderColor="blue.500"
-          >
-            0.5x
-          </Button>
-          <Button
-            size="sm"
-            onClick={() => handleSpeedChange(1.0)}
-            border={currentSpeed === 1.0 ? "2px solid" : "none"}
-            borderColor="blue.500"
-          >
-            1.0x
-          </Button>
-        </HStack>
         <Text fontSize="md" color="gray.600">
-          カメラで撮影されたボールの動きを、AKAZE特徴量マッチングを使用して追跡しています。
+          カメラで撮影されたボールの動きを、AKAZE特徴量マッチングを使用して追跡しています。（0.5倍速で再生）
         </Text>
       </VStack>
 
