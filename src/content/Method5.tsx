@@ -148,6 +148,7 @@ const Method5 = () => {
                 max={30}
                 size="sm"
                 width="100px"
+                allowMouseWheel={false}
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -196,6 +197,7 @@ const Method5 = () => {
                 max={30}
                 size="sm"
                 width="100px"
+                allowMouseWheel={false}
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -203,12 +205,15 @@ const Method5 = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              {error && (
-                <Alert status="error" mt={2}>
-                  <AlertIcon />
-                  {error}
-                </Alert>
-              )}
+              {/* エラーメッセージ領域を固定高さで確保してレイアウトシフトを防止 */}
+              <Box minHeight="60px" mt={2}>
+                {error && (
+                  <Alert status="error">
+                    <AlertIcon />
+                    {error}
+                  </Alert>
+                )}
+              </Box>
               <Button onClick={handleProcessImageMedian} mt={3}>
                 {processTriggerMedian
                   ? "元画像に戻す"
