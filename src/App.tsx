@@ -6,7 +6,7 @@ import MainContent from "./components/mainContent/MainContent";
 import Footer from "./components/footer/footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { Box, Spinner, Flex } from "@chakra-ui/react";
-import "katex/dist/katex.mjs";
+import "katex/dist/katex.min.css";
 
 // Lazy load route components
 const Home = lazy(() => import("./routes/Home"));

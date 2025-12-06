@@ -95,15 +95,25 @@ const Method4 = () => {
       <List spacing={4} styleType="decimal" pl={4} mb={6}>
         <ListItem>
           <Text fontSize="lg" fontWeight="bold" mb={2}>
-            基本概念
+            基本概念と全体フロー
           </Text>
-          <Text fontSize="md" lineHeight="1.8">
+          <Text fontSize="md" lineHeight="1.8" mb={3}>
             ハフ変換は、画像上のピクセルから形状のパラメータ空間に変換することで、その形状を検出します。例えば、直線や円のような形状をエッジ検出した後に特定する場合に使われます。
           </Text>
+          <Text fontSize="md" lineHeight="1.8" mb={2}>
+            <strong>処理の流れ：</strong>
+          </Text>
+          <List spacing={2} styleType="none" pl={4}>
+            <ListItem>1. <strong>前処理</strong>：グレースケール変換、ノイズ除去</ListItem>
+            <ListItem>2. <strong>エッジ検出</strong>：Cannyなどのエッジ検出アルゴリズムを適用</ListItem>
+            <ListItem>3. <strong>ハフ変換</strong>：エッジ点をパラメータ空間に投票</ListItem>
+            <ListItem>4. <strong>直線検出</strong>：投票数が多いパラメータを特定</ListItem>
+            <ListItem>5. <strong>結果描画</strong>：検出された直線を元画像に描画</ListItem>
+          </List>
         </ListItem>
         <ListItem>
           <Text fontSize="lg" fontWeight="bold" mb={2}>
-            直線におけるハフ変換
+            直線におけるハフ変換と極座標表現
           </Text>
           <Box fontSize="md" lineHeight="1.8">
             直線は、次のような一般的な方程式で表されます：
@@ -113,17 +123,114 @@ const Method4 = () => {
             ここで、
             <InlineMath math="a" /> は傾き、
             <InlineMath math="b" />
-            は切片です。しかし、ハフ変換ではこの直線の方程式を次のように極座標系に変換します：
+            は切片です。しかし、この表現には<strong>垂直線（傾きが無限大）を表現できない</strong>という問題があります。
+            <br />
+            <br />
+            そのため、ハフ変換ではこの直線の方程式を次のように<strong>極座標系</strong>に変換します：
             <br />
             <BlockMath math={"r = x \\cos\\theta + y \\sin\\theta"} />
             <br />
             ここで、
             <InlineMath math="r" /> は直線と原点との垂直距離、
             <InlineMath math={"\\theta"} />
-            は直線の角度です。この変換により、直線のパラメータ空間（
-            <InlineMath math="r" /> と
-            <InlineMath math={"\\theta"} />
-            ）に変換できます。
+            は直線の法線ベクトルの角度です。
+            <br />
+            <br />
+            <strong>極座標表現の利点：</strong>
+            <List spacing={1} styleType="disc" pl={6} mt={2}>
+              <ListItem>垂直線も含めてすべての直線を表現可能</ListItem>
+              <ListItem>
+                パラメータ空間が有限（<InlineMath math="0 < θ < 180°" />、<InlineMath math="r" />は画像サイズで制限）
+              </ListItem>
+              <ListItem>計算が安定（無限大の値を扱わない）</ListItem>
+            </List>
+          </Box>
+        </ListItem>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            投票メカニズムとアキュムレータ配列
+          </Text>
+          <Box fontSize="md" lineHeight="1.8">
+            ハフ変換の核心は<strong>投票（Voting）</strong>という仕組みです。
+            <br />
+            <br />
+            <strong>アキュムレータ配列：</strong>
+            <br />
+            <InlineMath math="r" />-<InlineMath math="\theta" />
+            空間を離散化した2次元配列で、各セルが「その直線パラメータに投票された回数」を保持します。
+            <br />
+            <br />
+            <strong>投票プロセス：</strong>
+            <List spacing={2} styleType="none" pl={4} mt={2}>
+              <ListItem>
+                1. エッジ点 <InlineMath math="(x, y)" /> を検出
+              </ListItem>
+              <ListItem>
+                2. <InlineMath math="\theta" /> を 0° 〜 180° まで一定間隔で変化させる
+              </ListItem>
+              <ListItem>
+                3. 各 <InlineMath math="\theta" /> に対して <InlineMath math="r = x \cos\theta + y \sin\theta" /> を計算
+              </ListItem>
+              <ListItem>
+                4. 計算された <InlineMath math="(r, \theta)" /> に対応するアキュムレータのセルに投票（+1）
+              </ListItem>
+              <ListItem>
+                5. すべてのエッジ点で繰り返し
+              </ListItem>
+            </List>
+            <br />
+            <strong>直線検出：</strong>
+            <br />
+            アキュムレータで投票数が閾値を超えたセルを探します。そのセルの
+            <InlineMath math="(r, \theta)" />
+            が検出された直線のパラメータとなります。同一直線上にある複数のエッジ点は、パラメータ空間で同じ
+            <InlineMath math="(r, \theta)" />
+            に投票するため、その位置の投票数が高くなります。
+          </Box>
+        </ListItem>
+        <ListItem>
+          <Text fontSize="lg" fontWeight="bold" mb={2}>
+            アルゴリズムの詳細手順
+          </Text>
+          <Box fontSize="md" lineHeight="1.8">
+            <List spacing={3} styleType="none" pl={0}>
+              <ListItem>
+                <strong>ステップ1: 前処理</strong>
+                <br />
+                グレースケール変換、ガウシアンフィルタによるノイズ除去を行います。
+              </ListItem>
+              <ListItem>
+                <strong>ステップ2: エッジ検出</strong>
+                <br />
+                Cannyエッジ検出などを用いて、画像内のエッジ点を抽出します。
+              </ListItem>
+              <ListItem>
+                <strong>ステップ3: アキュムレータ初期化</strong>
+                <br />
+                <InlineMath math="r" />-<InlineMath math="\theta" />
+                空間の2次元配列を0で初期化します。配列のサイズは、
+                <InlineMath math="\theta" />の分解能と画像サイズによって決まります。
+              </ListItem>
+              <ListItem>
+                <strong>ステップ4: 投票</strong>
+                <br />
+                各エッジ点について、可能なすべての
+                <InlineMath math="(r, \theta)" />
+                の組み合わせに投票します。
+              </ListItem>
+              <ListItem>
+                <strong>ステップ5: ピーク検出</strong>
+                <br />
+                アキュムレータから閾値以上の投票を持つセルを検出します。これが検出された直線のパラメータです。
+              </ListItem>
+              <ListItem>
+                <strong>ステップ6: 直線描画</strong>
+                <br />
+                検出された
+                <InlineMath math="(r, \theta)" />
+                パラメータから、元画像上に直線を描画します。
+              </ListItem>
+            </List>
           </Box>
         </ListItem>
       </List>
@@ -157,10 +264,16 @@ const Method4 = () => {
       </Box>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        変換結果を確認すると、しきい値を上げるほど検出した直線の数が少なくなることがわかります。これは、より直線らしい直線を限定していった結果です。
+        変換結果を確認すると、<strong>しきい値を上げるほど検出した直線の数が少なくなる</strong>ことがわかります。
+        しきい値は、アキュムレータ配列における<strong>最低投票数</strong>を意味します。
+        つまり、しきい値を上げることで、より多くのエッジ点が支持する（より確からしい）直線のみを検出するようになります。
+        <br />
+        <br />
         画像はカメラで撮影される場合がほとんどであるため、
         <strong>レンズの歪みによる影響</strong>
-        を少なからず受けます。人間の視覚には直線に見えても、コンピュータの目線からは直線ではない、と判定されることは往々にしてあります。そのため、検出したい直線をどのように限定していくか、という処理も検討する必要があります。
+        を少なからず受けます。人間の視覚には直線に見えても、コンピュータの目線からは直線ではない、と判定されることは往々にしてあります。
+        また、ノイズや不完全なエッジによって誤検出が発生することもあります。
+        そのため、しきい値の調整や後処理によって、検出したい直線をどのように限定していくか、という処理も検討する必要があります。
       </Text>
 
       <Text
