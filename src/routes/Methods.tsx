@@ -102,6 +102,11 @@ const Methods = () => {
               onOpen();
             }}
             onFocus={onOpen}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             ref={inputRef}
           />
           <InputRightElement width="4.5rem">
