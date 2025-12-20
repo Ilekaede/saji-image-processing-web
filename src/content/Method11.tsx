@@ -11,6 +11,7 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import { InlineMath, BlockMath } from "react-katex";
+import templateMatchingImg from "../components/image/template_matching.png";
 
 // メタデータの定義
 export const methodMetadata = {
@@ -18,6 +19,7 @@ export const methodMetadata = {
     title: "テンプレートマッチング",
     overview: "画像内から特定のパターンを探し出すテンプレートマッチングの原理と実装を学ぶ",
     tags: ["画像処理", "テンプレートマッチング", "物体検出", "パターン認識"],
+    image: templateMatchingImg,
     searchableContent:
         "テンプレートマッチング Template Matching SSD NCC ZNCC 類似度 物体検出 OpenCV パターン認識 相関",
 };
