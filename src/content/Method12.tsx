@@ -145,6 +145,31 @@ const Method12 = () => {
                 </Table>
             </TableContainer>
 
+            <Box mt={12} p={5} borderWidth="1px" borderRadius="lg" bg="white" boxShadow="md">
+                <Heading size="md" mb={4}>
+                    実行結果（カルマンフィルタ適用）
+                </Heading>
+                <Text fontSize="md" mb={4}>
+                    実際の動画に対して処理を行った結果です。ピンク色のボールをOpenCVで検出し（観測値）、カルマンフィルタで軌道を推定しています。
+                    <br />
+                    <Text as="span" color="red.500" fontWeight="bold">
+                        ● 赤点
+                    </Text>
+                    : 観測値（ノイズあり） /{" "}
+                    <Text as="span" color="green.500" fontWeight="bold">
+                        ＋ 緑十字
+                    </Text>
+                    : カルマンフィルタ推定値
+                </Text>
+                <Box
+                    as="video"
+                    controls
+                    width="100%"
+                    src={`${process.env.PUBLIC_URL}/videos/kalman_result.mp4`}
+                    borderRadius="md"
+                />
+            </Box>
+
             <Heading as="h2" size="lg" mt={8} mb={4}>
                 課題
             </Heading>
