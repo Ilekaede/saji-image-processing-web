@@ -112,4 +112,14 @@ export const methodsMetadata: MethodContent[] = [
         searchableContent:
             "テンプレートマッチング Template Matching SSD NCC ZNCC 類似度 物体検出 OpenCV パターン認識 相関",
     },
+    {
+        id: 12,
+        title: "時系列フィルタ（状態推定）",
+        overview:
+            "不確実な観測値から真の状態を推定する。カルマンフィルタやパーティクルフィルタの基礎。",
+        tags: ["画像処理", "時系列解析", "状態推定", "カルマンフィルタ"],
+        image: deepLearning,
+        searchableContent:
+            "カルマンフィルタ ベイジアンフィルタ パーティクルフィルタ 状態推定 予測 更新 観測モデル 運動モデル 確率分布 ガウス分布",
+    },
 ];
