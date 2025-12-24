@@ -150,7 +150,7 @@ const Method12 = () => {
                     実行結果（カルマンフィルタ適用）
                 </Heading>
                 <Text fontSize="md" mb={4}>
-                    実際の動画に対して処理を行った結果です。ピンク色のボールをOpenCVで検出し（観測値）、カルマンフィルタで軌道を推定しています。
+                    実際の動画に対して処理を行った結果です。青色のボールをOpenCVで検出し（観測値）、カルマンフィルタで軌道を推定しています。
                     <br />
                     <Text as="span" color="red.500" fontWeight="bold">
                         ● 赤点
@@ -166,6 +166,31 @@ const Method12 = () => {
                     controls
                     width="100%"
                     src={`${process.env.PUBLIC_URL}/videos/kalman_result.mp4`}
+                    borderRadius="md"
+                />
+            </Box>
+
+            <Box mt={8} p={5} borderWidth="1px" borderRadius="lg" bg="white" boxShadow="md">
+                <Heading size="md" mb={4}>
+                    実行結果（パーティクルフィルタ適用）
+                </Heading>
+                <Text fontSize="md" mb={4}>
+                    同じ動画に対してパーティクルフィルタ（粒子数=2000）を適用した結果です。背景差分法により、移動するボールのみを追跡対象としています。
+                    <br />
+                    <Text as="span" color="yellow.500" fontWeight="bold">
+                        ● 黄点
+                    </Text>
+                    : 推定に用いる粒子（確率分布） /{" "}
+                    <Text as="span" color="blue.500" fontWeight="bold">
+                        ＋ 青十字
+                    </Text>
+                    : 推定値（粒子の加重平均）
+                </Text>
+                <Box
+                    as="video"
+                    controls
+                    width="100%"
+                    src={`${process.env.PUBLIC_URL}/videos/particle_result.mp4`}
                     borderRadius="md"
                 />
             </Box>

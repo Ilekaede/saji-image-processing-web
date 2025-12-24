@@ -81,28 +81,47 @@ def main():
         # 観測（色抽出）フェーズ
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        # 赤色抽出（2つの範囲を結合）
-        lower_red1 = np.array([0, 64, 64])
-        upper_red1 = np.array([10, 255, 255])
-        lower_red2 = np.array([170, 64, 64])
-        upper_red2 = np.array([180, 255, 255])
+        # 青色抽出
+        lower_blue = np.array([100, 100, 100])
+        upper_blue = np.array([140, 255, 255])
         
-        mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
-        mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
-        mask = cv2.bitwise_or(mask1, mask2)
+        mask = cv2.inRange(hsv, lower_blue, upper_blue)
+
+        # ROI設定：画面上部50%をマスクアウト（下半分のみ処理）
+        h, w = mask.shape
+        roi_limit = int(h * 0.5)
+        mask[0:roi_limit, :] = 0
         
         # ノイズ除去
         kernel = np.ones((5, 5), np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         
-        # 重心計算
-        moments = cv2.moments(mask)
-        center = None
+        # 輪郭検出
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         
-        if moments["m00"] > 100: # 面積の閾値
-            cx = int(moments["m10"] / moments["m00"])
-            cy = int(moments["m01"] / moments["m00"])
-            center = (cx, cy)
+        best_contour = None
+        max_area = 0
+        center = None
+
+        for cnt in contours:
+            area = cv2.contourArea(cnt)
+            if area < 100: continue
+            
+            perimeter = cv2.arcLength(cnt, True)
+            if perimeter == 0: continue
+            
+            circularity = 4 * np.pi * area / (perimeter * perimeter)
+            if circularity > 0.5: 
+                if area > max_area:
+                    max_area = area
+                    best_contour = cnt
+        
+        if best_contour is not None:
+            M = cv2.moments(best_contour)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                center = (cx, cy)
             
             # 更新（補正）フェーズ
             measurement = np.array([[np.float32(cx)], [np.float32(cy)]])
