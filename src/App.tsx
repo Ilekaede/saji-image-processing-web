@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import MainContent from "./components/mainContent/MainContent";
-import Footer from "./components/footer/footer";
+import Footer from "./components/footer/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { Box, Spinner, Flex } from "@chakra-ui/react";
 import "katex/dist/katex.min.css";
