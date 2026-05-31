@@ -19,21 +19,12 @@ import {
 } from "@chakra-ui/react";
 import { InlineMath, BlockMath } from "react-katex";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 10,
-  title: "Transformer",
-  overview: "Attention機構とVision Transformerによる画像処理を学ぶ",
-  tags: ["画像処理", "深層学習", "Transformer"],
-  searchableContent:
-    "Transformer ViT Vision Transformer Attention Self-Attention SWIN CLIP マルチモーダル DeiT",
-};
 
 const Method10 = () => {
   return (
     <Box p={4} maxW="1200px" mx="auto">
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial" mb={4}>
-        {methodMetadata.title}
+        Transformer
       </Text>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>

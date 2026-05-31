@@ -19,21 +19,12 @@ import {
 } from "@chakra-ui/react";
 import { InlineMath, BlockMath } from "react-katex";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 9,
-  title: "画像認識(CNN)",
-  overview: "畳み込みニューラルネットワークによる画像認識の基礎を学ぶ",
-  tags: ["画像処理", "深層学習", "CNN"],
-  searchableContent:
-    "CNN 畳み込み 画像認識 ResNet VGG AlexNet 転移学習 データ拡張 classification convolutional neural network",
-};
 
 const Method9 = () => {
   return (
     <Box p={4} maxW="1200px" mx="auto">
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial" mb={4}>
-        {methodMetadata.title}
+        画像認識(CNN)
       </Text>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>

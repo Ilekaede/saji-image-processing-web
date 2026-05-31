@@ -18,15 +18,6 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 6,
-  title: "特徴点マッチング",
-  overview: "特徴点マッチングを使ってみよう",
-  tags: ["画像処理", "特徴点マッチング"],
-  searchableContent:
-    "特徴点マッチング SIFT SURF ORB 特徴量 キーポイント 対応点 feature matching descriptor",
-};
 
 const detectorData = [
   {
@@ -80,12 +71,12 @@ const Method6 = () => {
           fontFamily="Arial"
           mb={4}
         >
-          {methodMetadata.title}
+          特徴点マッチング
         </Text>
       </Flex>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        {methodMetadata.overview}
+        特徴点マッチングを使ってみよう
       </Text>
 
       <Text

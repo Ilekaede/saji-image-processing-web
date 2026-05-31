@@ -24,16 +24,6 @@ import Lenna from "../components/image/lenna.bmp";
 import BlurImage from "../components/image/2_move.png";
 import MedianImage from "../components/image/2_median.png";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 5,
-  title: "ノイズ除去を除去したい -フィルタ編-",
-  overview: "なかなか注目がいかないノイズ除去について述べる．実はかなり重要",
-  tags: ["画像処理", "ノイズ"],
-  image: Lenna,
-  searchableContent:
-    "ノイズ除去 フィルタ ガウシアンフィルタ メディアンフィルタ 平滑化 smoothing デノイジング ぼかし blur",
-};
 
 const Method5 = () => {
   const [processTriggerBlur, setProcessTriggerBlur] = useState<boolean>(false);
@@ -84,7 +74,7 @@ const Method5 = () => {
           fontFamily="Arial"
           mb={4}
         >
-          {methodMetadata.title}
+          ノイズ除去を除去したい -フィルタ編-
         </Text>
         <Box flex="1" display="flex" justifyContent="center">
           <Image
