@@ -21,7 +21,7 @@ const Home = () => {
     errorCountRef.current = 0;
   };
 
-  const handleVideoError = (e?: any) => {
+  const handleVideoError = (e?: unknown) => {
     errorCountRef.current += 1;
 
     // If we've tried all videos, stop trying
