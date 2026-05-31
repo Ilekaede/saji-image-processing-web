@@ -1,11 +1,6 @@
 import { useEffect, useRef } from "react";
 import cv from "opencv-ts";
-
-interface ImageProcessorProps {
-  imageFile: string;
-  processTrigger: boolean;
-  kernelSize: number;
-}
+import { ImageProcessorProps } from "./imageProcessorTypes";
 
 const Median = ({
   imageFile,
