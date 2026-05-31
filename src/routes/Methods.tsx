@@ -131,9 +131,9 @@ const Methods = () => {
             borderRadius="md"
             mt={0}
           >
-            {suggestions.map((suggestion, index) => (
+            {suggestions.map((suggestion) => (
               <Box
-                key={index}
+                key={suggestion}
                 p={2}
                 cursor="pointer"
                 _hover={{ bg: "gray.100" }}
@@ -174,9 +174,9 @@ const Methods = () => {
                   <Heading size="md">{content.title}</Heading>
                   <Text py="2">{content.overview}</Text>
                   <Stack direction="row" spacing={2} mt={2}>
-                    {content.tags.map((tag, index) => (
+                    {content.tags.map((tag) => (
                       <Button
-                        key={index}
+                        key={tag}
                         size="sm"
                         variant="outline"
                         colorScheme="gray"
