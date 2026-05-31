@@ -14,8 +14,7 @@ const MethodDetail = () => {
       .then((module) => {
         setComponent(() => module.default);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setHasError(true);
       });
   }, [id]);

@@ -26,13 +26,11 @@ const Home = () => {
 
     // If we've tried all videos, stop trying
     if (errorCountRef.current >= videoList.length) {
-      console.error("All videos failed to load");
       setHasError(true);
       setIsLoading(false);
       return;
     }
 
-    console.warn(`Video loading error for: ${videoList[currentVideoIndex]}`, e);
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoList.length);
   };
 
@@ -49,7 +47,6 @@ const Home = () => {
   const handleUserClick = () => {
     if (videoRef.current && needsInteraction) {
       videoRef.current.play().catch((error) => {
-        console.error("Error playing video after user interaction:", error);
         handleVideoError(error);
       });
       setNeedsInteraction(false);
@@ -69,11 +66,9 @@ const Home = () => {
             playPromise.catch((error) => {
               // Check if it's an autoplay policy error
               if (error.name === "NotAllowedError") {
-                console.log("Autoplay blocked, waiting for user interaction");
                 setNeedsInteraction(true);
                 setIsLoading(false);
               } else {
-                console.error("Error playing video:", error);
                 handleVideoError(error);
               }
             });
