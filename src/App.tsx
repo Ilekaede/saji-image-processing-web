@@ -13,7 +13,9 @@ const Home = lazy(() => import("./routes/Home"));
 const Manual = lazy(() => import("./routes/Manual"));
 const Research = lazy(() => import("./routes/Research"));
 const Methods = lazy(() => import("./routes/Methods"));
-const MethodDetail = lazy(() => import("./components/methodDetail/MethodDetail"));
+const MethodDetail = lazy(
+  () => import("./components/methodDetail/MethodDetail"),
+);
 
 const App = () => {
   return (
@@ -25,11 +27,7 @@ const App = () => {
         <MainContent>
           <Suspense
             fallback={
-              <Flex
-                justify="center"
-                align="center"
-                minH="calc(100vh - 200px)"
-              >
+              <Flex justify="center" align="center" minH="calc(100vh - 200px)">
                 <Spinner size="xl" color="blue.500" thickness="4px" />
               </Flex>
             }

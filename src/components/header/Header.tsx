@@ -17,7 +17,10 @@ type HeaderProps = {
 };
 
 const Header = ({ title }: HeaderProps) => {
-  const bg = useColorModeValue("rgba(255, 255, 255, 0.8)", "rgba(26, 32, 44, 0.8)");
+  const bg = useColorModeValue(
+    "rgba(255, 255, 255, 0.8)",
+    "rgba(26, 32, 44, 0.8)",
+  );
 
   return (
     <Box

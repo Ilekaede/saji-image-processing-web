@@ -24,7 +24,8 @@ export const methodMetadata = {
   overview:
     "動画から背景情報のみを取り出してみる。固定カメラ案件での活躍が期待できる。",
   tags: ["画像処理", "背景差分法"],
-  searchableContent: "背景差分法 動体検出 フレーム差分 移動物体 検出 background subtraction 動画処理 時系列 変化検出",
+  searchableContent:
+    "背景差分法 動体検出 フレーム差分 移動物体 検出 background subtraction 動画処理 時系列 変化検出",
 };
 
 const Method2 = () => {
@@ -165,7 +166,10 @@ const Method2 = () => {
           borderRadius="lg"
           boxShadow="lg"
         >
-          <source src={`${process.env.PUBLIC_URL}/videos/method2_1.webm`} type="video/webm" />
+          <source
+            src={`${process.env.PUBLIC_URL}/videos/method2_1.webm`}
+            type="video/webm"
+          />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
         <Text fontSize="md" color="gray.600">

@@ -27,7 +27,8 @@ export const methodMetadata = {
   overview: "画像内の物体を検出し、位置と種類を特定する技術について学ぶ",
   tags: ["画像処理", "深層学習", "物体検出"],
   image: deepLearing,
-  searchableContent: "物体検出 YOLO R-CNN Faster R-CNN SSD RetinaNet IoU mAP bounding box アンカーボックス object detection",
+  searchableContent:
+    "物体検出 YOLO R-CNN Faster R-CNN SSD RetinaNet IoU mAP bounding box アンカーボックス object detection",
 };
 
 const Method3 = () => {
@@ -61,7 +62,9 @@ const Method3 = () => {
       </Flex>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        物体検出（Object Detection）は、画像内に存在する物体の位置と種類を同時に特定する技術です。単に「何が写っているか」を判定する画像分類とは異なり、「どこに何があるか」を矩形領域（Bounding Box）で示すことができます。自動運転、監視カメラ、医療画像診断など、様々な分野で活用されています。
+        物体検出（Object
+        Detection）は、画像内に存在する物体の位置と種類を同時に特定する技術です。単に「何が写っているか」を判定する画像分類とは異なり、「どこに何があるか」を矩形領域（Bounding
+        Box）で示すことができます。自動運転、監視カメラ、医療画像診断など、様々な分野で活用されています。
       </Text>
 
       <Text
@@ -81,7 +84,8 @@ const Method3 = () => {
             Bounding Box（バウンディングボックス）
           </Text>
           <Text fontSize="md" lineHeight="1.8">
-            物体を囲む矩形領域のことで、通常は左上の座標(x, y)と幅(w)、高さ(h)で表現されます。物体検出の目的は、この矩形領域と物体のクラスを正確に予測することです。
+            物体を囲む矩形領域のことで、通常は左上の座標(x,
+            y)と幅(w)、高さ(h)で表現されます。物体検出の目的は、この矩形領域と物体のクラスを正確に予測することです。
           </Text>
         </ListItem>
 
@@ -90,7 +94,9 @@ const Method3 = () => {
             IoU（Intersection over Union）
           </Text>
           <Text fontSize="md" lineHeight="1.8">
-            予測されたBounding Boxと正解のBounding Boxの重なり具合を示す指標です。2つの領域の積集合を和集合で割った値で、0から1の範囲を取ります。一般的にIoU &gt; 0.5で正解とみなされます。
+            予測されたBounding Boxと正解のBounding
+            Boxの重なり具合を示す指標です。2つの領域の積集合を和集合で割った値で、0から1の範囲を取ります。一般的にIoU
+            &gt; 0.5で正解とみなされます。
           </Text>
         </ListItem>
 
@@ -99,7 +105,8 @@ const Method3 = () => {
             mAP（mean Average Precision）
           </Text>
           <Text fontSize="md" lineHeight="1.8">
-            物体検出の精度を評価する代表的な指標です。各クラスのAverage Precision（AP）を計算し、その平均を取ります。mAP@0.5やmAP@0.5:0.95など、IoUの閾値によって異なる指標が使われます。
+            物体検出の精度を評価する代表的な指標です。各クラスのAverage
+            Precision（AP）を計算し、その平均を取ります。mAP@0.5やmAP@0.5:0.95など、IoUの閾値によって異なる指標が使われます。
           </Text>
         </ListItem>
       </List>
@@ -116,7 +123,10 @@ const Method3 = () => {
       </Text>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        深層学習が登場する前は、HOG（Histogram of Oriented Gradients）特徴量とSVM（Support Vector Machine）を組み合わせた手法や、DPM（Deformable Part Models）などが使われていました。これらの手法は手作業で特徴量を設計する必要があり、精度にも限界がありました。
+        深層学習が登場する前は、HOG（Histogram of Oriented
+        Gradients）特徴量とSVM（Support Vector
+        Machine）を組み合わせた手法や、DPM（Deformable Part
+        Models）などが使われていました。これらの手法は手作業で特徴量を設計する必要があり、精度にも限界がありました。
       </Text>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
@@ -244,13 +254,13 @@ const Method3 = () => {
             </ListItem>
             <ListItem>
               <Text fontSize="md" lineHeight="1.8">
-                <strong>欠点:</strong> 2段階検出に比べて精度がやや劣る（最近は改善）
+                <strong>欠点:</strong>{" "}
+                2段階検出に比べて精度がやや劣る（最近は改善）
               </Text>
             </ListItem>
           </List>
         </ListItem>
       </List>
-
 
       <Text
         as="h2"
@@ -263,12 +273,13 @@ const Method3 = () => {
         YOLOによる物体検出のデモ
       </Text>
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        YOLO（You Only Look Once）は、リアルタイム物体検出の代名詞となったアルゴリズムです。画像全体を一度だけ見るだけで物体を検出できることから、この名前が付けられました。
+        YOLO（You Only Look
+        Once）は、リアルタイム物体検出の代名詞となったアルゴリズムです。画像全体を一度だけ見るだけで物体を検出できることから、この名前が付けられました。
       </Text>
 
-
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        実際にYOLOv8を使って物体検出を行った結果を動画で確認できます。動画内の鳥が検出され、Bounding Boxとクラスラベル、IoUが表示されます。
+        実際にYOLOv8を使って物体検出を行った結果を動画で確認できます。動画内の鳥が検出され、Bounding
+        Boxとクラスラベル、IoUが表示されます。
       </Text>
 
       <Box mb={8}>
@@ -283,7 +294,10 @@ const Method3 = () => {
           mx="auto"
           display="block"
         >
-          <source src={`${process.env.PUBLIC_URL}/videos/method3_1.webm`} type="video/webm" />
+          <source
+            src={`${process.env.PUBLIC_URL}/videos/method3_1.webm`}
+            type="video/webm"
+          />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
         <Text fontSize="md" color="gray.600" textAlign="center" mt={2}>
@@ -332,9 +346,9 @@ const Method3 = () => {
       </List>
 
       <Text>
-        佐治研での利用例としては、<b>車両検出(上、2022修論)</b>、<b>家屋検出(川村、2023修論)</b>などが挙げられます。
+        佐治研での利用例としては、<b>車両検出(上、2022修論)</b>、
+        <b>家屋検出(川村、2023修論)</b>などが挙げられます。
       </Text>
-
 
       <Text
         as="h2"
@@ -350,17 +364,20 @@ const Method3 = () => {
       <List spacing={3} styleType="decimal" pl={4} mb={8}>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            Girshick, R., et al. (2014). "Rich feature hierarchies for accurate object detection and semantic segmentation." CVPR.
+            Girshick, R., et al. (2014). "Rich feature hierarchies for accurate
+            object detection and semantic segmentation." CVPR.
           </Text>
         </ListItem>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            Ren, S., et al. (2015). "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks." NeurIPS.
+            Ren, S., et al. (2015). "Faster R-CNN: Towards Real-Time Object
+            Detection with Region Proposal Networks." NeurIPS.
           </Text>
         </ListItem>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            Redmon, J., et al. (2016). "You Only Look Once: Unified, Real-Time Object Detection." CVPR.
+            Redmon, J., et al. (2016). "You Only Look Once: Unified, Real-Time
+            Object Detection." CVPR.
           </Text>
         </ListItem>
         <ListItem>
@@ -370,19 +387,28 @@ const Method3 = () => {
         </ListItem>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            Lin, T. Y., et al. (2017). "Focal Loss for Dense Object Detection." ICCV.
+            Lin, T. Y., et al. (2017). "Focal Loss for Dense Object Detection."
+            ICCV.
           </Text>
         </ListItem>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            <ChakraLink href="https://docs.ultralytics.com/" isExternal color="blue.500">
+            <ChakraLink
+              href="https://docs.ultralytics.com/"
+              isExternal
+              color="blue.500"
+            >
               Ultralytics YOLOv8 Documentation
             </ChakraLink>
           </Text>
         </ListItem>
         <ListItem>
           <Text fontSize="md" lineHeight="1.8">
-            <ChakraLink href="https://paperswithcode.com/task/object-detection" isExternal color="blue.500">
+            <ChakraLink
+              href="https://paperswithcode.com/task/object-detection"
+              isExternal
+              color="blue.500"
+            >
               Papers with Code - Object Detection
             </ChakraLink>
           </Text>

@@ -8,4 +8,3 @@ import { methodsMetadata } from "../data/methodsMetadata";
 export const generateMethodContents = (): MethodContent[] => {
   return methodsMetadata;
 };
-

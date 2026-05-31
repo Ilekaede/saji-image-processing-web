@@ -26,7 +26,8 @@ export const methodMetadata = {
   overview: "ハフ変換とは〜",
   tags: ["画像処理", "ハフ変換"],
   image: AbemaBag,
-  searchableContent: "ハフ変換 直線検出 円検出 Hough transform エッジ検出 形状検出 パラメータ空間 投票",
+  searchableContent:
+    "ハフ変換 直線検出 円検出 Hough transform エッジ検出 形状検出 パラメータ空間 投票",
 };
 
 const Method4 = () => {
@@ -34,7 +35,7 @@ const Method4 = () => {
   const [threshold, setThreshold] = useState<number>(50);
   const handleThresholdChange = (
     valueAsString: string,
-    valueAsNumber: number
+    valueAsNumber: number,
   ) => {
     setThreshold(valueAsNumber);
   };
@@ -104,11 +105,22 @@ const Method4 = () => {
             <strong>処理の流れ：</strong>
           </Text>
           <List spacing={2} styleType="none" pl={4}>
-            <ListItem>1. <strong>前処理</strong>：グレースケール変換、ノイズ除去</ListItem>
-            <ListItem>2. <strong>エッジ検出</strong>：Cannyなどのエッジ検出アルゴリズムを適用</ListItem>
-            <ListItem>3. <strong>ハフ変換</strong>：エッジ点をパラメータ空間に投票</ListItem>
-            <ListItem>4. <strong>直線検出</strong>：投票数が多いパラメータを特定</ListItem>
-            <ListItem>5. <strong>結果描画</strong>：検出された直線を元画像に描画</ListItem>
+            <ListItem>
+              1. <strong>前処理</strong>：グレースケール変換、ノイズ除去
+            </ListItem>
+            <ListItem>
+              2. <strong>エッジ検出</strong>
+              ：Cannyなどのエッジ検出アルゴリズムを適用
+            </ListItem>
+            <ListItem>
+              3. <strong>ハフ変換</strong>：エッジ点をパラメータ空間に投票
+            </ListItem>
+            <ListItem>
+              4. <strong>直線検出</strong>：投票数が多いパラメータを特定
+            </ListItem>
+            <ListItem>
+              5. <strong>結果描画</strong>：検出された直線を元画像に描画
+            </ListItem>
           </List>
         </ListItem>
         <ListItem>
@@ -123,10 +135,13 @@ const Method4 = () => {
             ここで、
             <InlineMath math="a" /> は傾き、
             <InlineMath math="b" />
-            は切片です。しかし、この表現には<strong>垂直線（傾きが無限大）を表現できない</strong>という問題があります。
+            は切片です。しかし、この表現には
+            <strong>垂直線（傾きが無限大）を表現できない</strong>
+            という問題があります。
             <br />
             <br />
-            そのため、ハフ変換ではこの直線の方程式を次のように<strong>極座標系</strong>に変換します：
+            そのため、ハフ変換ではこの直線の方程式を次のように
+            <strong>極座標系</strong>に変換します：
             <br />
             <BlockMath math={"r = x \\cos\\theta + y \\sin\\theta"} />
             <br />
@@ -140,7 +155,9 @@ const Method4 = () => {
             <List spacing={1} styleType="disc" pl={6} mt={2}>
               <ListItem>垂直線も含めてすべての直線を表現可能</ListItem>
               <ListItem>
-                パラメータ空間が有限（<InlineMath math="0 < θ < 180°" />、<InlineMath math="r" />は画像サイズで制限）
+                パラメータ空間が有限（
+                <InlineMath math="0 < θ < 180°" />、<InlineMath math="r" />
+                は画像サイズで制限）
               </ListItem>
               <ListItem>計算が安定（無限大の値を扱わない）</ListItem>
             </List>
@@ -166,17 +183,18 @@ const Method4 = () => {
                 1. エッジ点 <InlineMath math="(x, y)" /> を検出
               </ListItem>
               <ListItem>
-                2. <InlineMath math="\theta" /> を 0° 〜 180° まで一定間隔で変化させる
+                2. <InlineMath math="\theta" /> を 0° 〜 180°
+                まで一定間隔で変化させる
               </ListItem>
               <ListItem>
-                3. 各 <InlineMath math="\theta" /> に対して <InlineMath math="r = x \cos\theta + y \sin\theta" /> を計算
+                3. 各 <InlineMath math="\theta" /> に対して{" "}
+                <InlineMath math="r = x \cos\theta + y \sin\theta" /> を計算
               </ListItem>
               <ListItem>
-                4. 計算された <InlineMath math="(r, \theta)" /> に対応するアキュムレータのセルに投票（+1）
+                4. 計算された <InlineMath math="(r, \theta)" />{" "}
+                に対応するアキュムレータのセルに投票（+1）
               </ListItem>
-              <ListItem>
-                5. すべてのエッジ点で繰り返し
-              </ListItem>
+              <ListItem>5. すべてのエッジ点で繰り返し</ListItem>
             </List>
             <br />
             <strong>直線検出：</strong>
@@ -209,7 +227,8 @@ const Method4 = () => {
                 <br />
                 <InlineMath math="r" />-<InlineMath math="\theta" />
                 空間の2次元配列を0で初期化します。配列のサイズは、
-                <InlineMath math="\theta" />の分解能と画像サイズによって決まります。
+                <InlineMath math="\theta" />
+                の分解能と画像サイズによって決まります。
               </ListItem>
               <ListItem>
                 <strong>ステップ4: 投票</strong>
@@ -264,8 +283,10 @@ const Method4 = () => {
       </Box>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        変換結果を確認すると、<strong>しきい値を上げるほど検出した直線の数が少なくなる</strong>ことがわかります。
-        しきい値は、アキュムレータ配列における<strong>最低投票数</strong>を意味します。
+        変換結果を確認すると、
+        <strong>しきい値を上げるほど検出した直線の数が少なくなる</strong>
+        ことがわかります。 しきい値は、アキュムレータ配列における
+        <strong>最低投票数</strong>を意味します。
         つまり、しきい値を上げることで、より多くのエッジ点が支持する（より確からしい）直線のみを検出するようになります。
         <br />
         <br />

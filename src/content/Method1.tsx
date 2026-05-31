@@ -11,7 +11,8 @@ export const methodMetadata = {
   overview: "",
   tags: ["画像処理", "2値化"],
   image: abemaBagThreshold,
-  searchableContent: "2値化 閾値 グレースケール 白黒 画像処理 二値化 threshold binary モノクロ 画素値 輝度 変換",
+  searchableContent:
+    "2値化 閾値 グレースケール 白黒 画像処理 二値化 threshold binary モノクロ 画素値 輝度 変換",
 };
 
 const Method1 = () => {

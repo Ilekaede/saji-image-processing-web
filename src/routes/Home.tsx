@@ -68,7 +68,7 @@ const Home = () => {
           if (playPromise !== undefined) {
             playPromise.catch((error) => {
               // Check if it's an autoplay policy error
-              if (error.name === 'NotAllowedError') {
+              if (error.name === "NotAllowedError") {
                 console.log("Autoplay blocked, waiting for user interaction");
                 setNeedsInteraction(true);
                 setIsLoading(false);

@@ -31,7 +31,8 @@ export const methodMetadata = {
   overview: "なかなか注目がいかないノイズ除去について述べる．実はかなり重要",
   tags: ["画像処理", "ノイズ"],
   image: Lenna,
-  searchableContent: "ノイズ除去 フィルタ ガウシアンフィルタ メディアンフィルタ 平滑化 smoothing デノイジング ぼかし blur",
+  searchableContent:
+    "ノイズ除去 フィルタ ガウシアンフィルタ メディアンフィルタ 平滑化 smoothing デノイジング ぼかし blur",
 };
 
 const Method5 = () => {
@@ -43,14 +44,14 @@ const Method5 = () => {
   const [error, setError] = useState<string | null>(null);
   const handleKernelSizeBlurChange = (
     valueAsString: string,
-    valueAsNumber: number
+    valueAsNumber: number,
   ) => {
     setKernelSizeBlur(valueAsNumber);
   };
 
   const handleKernelSizeMedianChange = (
     valueAsString: string,
-    valueAsNumber: number
+    valueAsNumber: number,
   ) => {
     if (valueAsNumber % 2 === 0) {
       setError("カーネルサイズは奇数でなければなりません");

@@ -24,7 +24,8 @@ export const methodMetadata = {
   title: "特徴点マッチング",
   overview: "特徴点マッチングを使ってみよう",
   tags: ["画像処理", "特徴点マッチング"],
-  searchableContent: "特徴点マッチング SIFT SURF ORB 特徴量 キーポイント 対応点 feature matching descriptor",
+  searchableContent:
+    "特徴点マッチング SIFT SURF ORB 特徴量 キーポイント 対応点 feature matching descriptor",
 };
 
 const detectorData = [
@@ -201,7 +202,10 @@ const Method6 = () => {
           borderRadius="lg"
           boxShadow="lg"
         >
-          <source src={`${process.env.PUBLIC_URL}/videos/method6_1.webm`} type="video/webm" />
+          <source
+            src={`${process.env.PUBLIC_URL}/videos/method6_1.webm`}
+            type="video/webm"
+          />
           お使いのブラウザは動画の再生に対応していません。
         </Box>
         <Text fontSize="md" color="gray.600">

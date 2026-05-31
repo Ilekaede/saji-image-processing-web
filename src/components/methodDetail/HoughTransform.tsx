@@ -53,7 +53,7 @@ const HoughTransform = ({
                 new cv.Point(x2, y2),
                 new cv.Scalar(255, 0, 0, 255),
                 1,
-                cv.LINE_AA
+                cv.LINE_AA,
               );
             }
             cv.imshow(canvas, src);
