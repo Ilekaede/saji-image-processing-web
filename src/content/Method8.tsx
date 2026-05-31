@@ -18,22 +18,12 @@ import {
 } from "@chakra-ui/react";
 import { InlineMath, BlockMath } from "react-katex";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 8,
-  title: "オプティカルフロー",
-  overview:
-    "動画内の物体の動きをベクトル場として可視化し、密と疎の2つのアプローチを学ぶ",
-  tags: ["画像処理", "オプティカルフロー", "動き推定"],
-  searchableContent:
-    "オプティカルフロー optical flow 動き検出 Farneback Lucas-Kanade 密 疎 ベクトル場 動き推定 フロー 特徴点追跡 動画処理 モーション",
-};
 
 const Method9 = () => {
   return (
     <Box p={4} maxW="1200px" mx="auto">
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial" mb={4}>
-        {methodMetadata.title}
+        オプティカルフロー
       </Text>
 
       <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>

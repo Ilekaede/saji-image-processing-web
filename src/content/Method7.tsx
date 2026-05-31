@@ -4,17 +4,6 @@ import { Box, Text, List, ListItem, Flex, Image } from "@chakra-ui/react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import pythonPC from "../components/image/python_in_pc.png";
-// メタデータの定義
-export const methodMetadata = {
-  id: 7,
-  title: "ループ書くときはNumPyを使おう",
-  overview:
-    "Pythonの画像処理って速度遅いな〜二重ループなんてやってられないよ;;と思っているそこのあなた向け",
-  tags: ["画像処理", "NumPy"],
-  image: pythonPC,
-  searchableContent:
-    "NumPy Python 配列 ベクトル化 高速化 行列演算 ndarray ループ最適化 パフォーマンス",
-};
 
 const Method7 = () => {
   return (
@@ -33,7 +22,7 @@ const Method7 = () => {
             fontFamily="Arial"
             mb={2}
           >
-            {methodMetadata.title}
+            ループ書くときはNumPyを使おう
           </Text>
         </Box>
         <Box flex="1" display="flex" justifyContent="center">

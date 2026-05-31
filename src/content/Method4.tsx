@@ -19,16 +19,6 @@ import { useState } from "react";
 import HoughTransform from "../components/methodDetail/HoughTransform";
 import AbemaBag from "../components/image/abemaBag.jpg";
 import { InlineMath, BlockMath } from "react-katex";
-// メタデータの定義
-export const methodMetadata = {
-  id: 4,
-  title: "ハフ変換",
-  overview: "ハフ変換とは〜",
-  tags: ["画像処理", "ハフ変換"],
-  image: AbemaBag,
-  searchableContent:
-    "ハフ変換 直線検出 円検出 Hough transform エッジ検出 形状検出 パラメータ空間 投票",
-};
 
 const Method4 = () => {
   const [processTrigger, setProcessTrigger] = useState<boolean>(false);
@@ -58,7 +48,7 @@ const Method4 = () => {
           fontFamily="Arial"
           mb={4}
         >
-          {methodMetadata.title}
+          ハフ変換
         </Text>
         <Box flex="1" display="flex" justifyContent="center">
           <Image

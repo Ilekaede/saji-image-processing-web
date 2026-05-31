@@ -4,17 +4,6 @@ import React from "react";
 import { Box, Text, Image, List, ListItem, Flex } from "@chakra-ui/react";
 import abemaBagThreshold from "../components/image/abemaBag_threshold.jpg";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 1,
-  title: "2値化",
-  overview: "",
-  tags: ["画像処理", "2値化"],
-  image: abemaBagThreshold,
-  searchableContent:
-    "2値化 閾値 グレースケール 白黒 画像処理 二値化 threshold binary モノクロ 画素値 輝度 変換",
-};
-
 const Method1 = () => {
   return (
     <Box p={4} maxW="1200px" mx="auto">
@@ -32,7 +21,7 @@ const Method1 = () => {
             fontFamily="Arial"
             mb={2}
           >
-            {methodMetadata.title}
+            2値化
           </Text>
         </Box>
         {/* <Box flex="1" display="flex" justifyContent="center">

@@ -17,16 +17,6 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 2,
-  title: "背景差分法",
-  overview:
-    "動画から背景情報のみを取り出してみる。固定カメラ案件での活躍が期待できる。",
-  tags: ["画像処理", "背景差分法"],
-  searchableContent:
-    "背景差分法 動体検出 フレーム差分 移動物体 検出 background subtraction 動画処理 時系列 変化検出",
-};
 
 const Method2 = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -57,12 +47,9 @@ const Method2 = () => {
   return (
     <Box p={4} maxW="1200px" mx="auto">
       <Text as="h1" fontSize="3xl" fontWeight="bold" fontFamily="Arial" mb={4}>
-        {methodMetadata.title}
+        背景差分法
       </Text>
 
-      {/* <Text fontSize="md" fontFamily="Verdana" lineHeight="1.8" mb={6}>
-        {methodMetadata.overview}
-      </Text> */}
 
       <Text
         as="h2"

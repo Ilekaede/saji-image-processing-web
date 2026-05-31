@@ -20,16 +20,6 @@ import {
 } from "@chakra-ui/react";
 import deepLearing from "../components/image/deepLearning.png";
 
-// メタデータの定義
-export const methodMetadata = {
-  id: 3,
-  title: "物体検出",
-  overview: "画像内の物体を検出し、位置と種類を特定する技術について学ぶ",
-  tags: ["画像処理", "深層学習", "物体検出"],
-  image: deepLearing,
-  searchableContent:
-    "物体検出 YOLO R-CNN Faster R-CNN SSD RetinaNet IoU mAP bounding box アンカーボックス object detection",
-};
 
 const Method3 = () => {
   return (
@@ -47,7 +37,7 @@ const Method3 = () => {
           fontFamily="Arial"
           mb={4}
         >
-          {methodMetadata.title}
+          物体検出
         </Text>
         <Box flex="1" display="flex" justifyContent="center">
           <Image
