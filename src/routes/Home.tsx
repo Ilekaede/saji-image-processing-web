@@ -55,9 +55,6 @@ const Home = () => {
 
   useEffect(() => {
     if (videoRef.current && !hasError) {
-      videoRef.current.load();
-
-      // Small delay to ensure video is ready
       const timer = setTimeout(() => {
         if (videoRef.current) {
           const playPromise = videoRef.current.play();
@@ -87,6 +84,7 @@ const Home = () => {
         w="100%"
         h="60vh"
         overflow="hidden"
+        bg="black"
         onClick={handleUserClick}
         cursor={needsInteraction ? "pointer" : "default"}
       >
@@ -107,6 +105,8 @@ const Home = () => {
               w="100%"
               h="100%"
               objectFit="cover"
+              opacity={isLoading ? 0 : 1}
+              transition="opacity 0.5s ease"
               onEnded={handleVideoEnd}
               onError={handleVideoError}
               onLoadStart={handleVideoLoadStart}
