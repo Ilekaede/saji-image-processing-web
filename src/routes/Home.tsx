@@ -55,9 +55,6 @@ const Home = () => {
 
   useEffect(() => {
     if (videoRef.current && !hasError) {
-      videoRef.current.load();
-
-      // Small delay to ensure video is ready
       const timer = setTimeout(() => {
         if (videoRef.current) {
           const playPromise = videoRef.current.play();
