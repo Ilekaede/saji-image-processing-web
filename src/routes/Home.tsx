@@ -1,5 +1,5 @@
 import { Box, Text, Flex, Heading } from "@chakra-ui/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { AnimatedText } from "../components/AnimatedText";
 
 const videoList = [
@@ -17,14 +17,11 @@ const Home = () => {
 
   const handleVideoEnd = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoList.length);
-    setHasError(false);
-    errorCountRef.current = 0;
   };
 
-  const handleVideoError = (e?: unknown) => {
+  const handleVideoError = () => {
     errorCountRef.current += 1;
 
-    // If we've tried all videos, stop trying
     if (errorCountRef.current >= videoList.length) {
       setHasError(true);
       setIsLoading(false);
@@ -42,40 +39,25 @@ const Home = () => {
     setIsLoading(false);
     setHasError(false);
     errorCountRef.current = 0;
+
+    videoRef.current?.play().catch((error) => {
+      if (error.name === "NotAllowedError") {
+        setNeedsInteraction(true);
+        setIsLoading(false);
+      } else {
+        handleVideoError();
+      }
+    });
   };
 
   const handleUserClick = () => {
     if (videoRef.current && needsInteraction) {
       videoRef.current.play().catch((error) => {
-        handleVideoError(error);
+        handleVideoError();
       });
       setNeedsInteraction(false);
     }
   };
-
-  useEffect(() => {
-    if (videoRef.current && !hasError) {
-      const timer = setTimeout(() => {
-        if (videoRef.current) {
-          const playPromise = videoRef.current.play();
-
-          if (playPromise !== undefined) {
-            playPromise.catch((error) => {
-              // Check if it's an autoplay policy error
-              if (error.name === "NotAllowedError") {
-                setNeedsInteraction(true);
-                setIsLoading(false);
-              } else {
-                handleVideoError(error);
-              }
-            });
-          }
-        }
-      }, 100);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentVideoIndex, hasError]);
 
   return (
     <div>
@@ -94,9 +76,7 @@ const Home = () => {
               as="video"
               ref={videoRef}
               src={videoList[currentVideoIndex]}
-              autoPlay
               muted
-              loop={false}
               preload="auto"
               playsInline
               position="absolute"
