@@ -77,7 +77,6 @@ const Home = () => {
               ref={videoRef}
               src={videoList[currentVideoIndex]}
               muted
-              loop={false}
               preload="auto"
               playsInline
               position="absolute"
