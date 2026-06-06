@@ -17,11 +17,9 @@ const Home = () => {
 
   const handleVideoEnd = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoList.length);
-    setHasError(false);
-    errorCountRef.current = 0;
   };
 
-  const handleVideoError = (e?: unknown) => {
+  const handleVideoError = () => {
     errorCountRef.current += 1;
 
     if (errorCountRef.current >= videoList.length) {
@@ -47,7 +45,7 @@ const Home = () => {
         setNeedsInteraction(true);
         setIsLoading(false);
       } else {
-        handleVideoError(error);
+        handleVideoError();
       }
     });
   };
@@ -55,7 +53,7 @@ const Home = () => {
   const handleUserClick = () => {
     if (videoRef.current && needsInteraction) {
       videoRef.current.play().catch((error) => {
-        handleVideoError(error);
+        handleVideoError();
       });
       setNeedsInteraction(false);
     }
