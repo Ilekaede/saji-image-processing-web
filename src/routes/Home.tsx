@@ -1,5 +1,5 @@
 import { Box, Text, Flex, Heading } from "@chakra-ui/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { AnimatedText } from "../components/AnimatedText";
 
 const videoList = [
@@ -24,7 +24,6 @@ const Home = () => {
   const handleVideoError = (e?: unknown) => {
     errorCountRef.current += 1;
 
-    // If we've tried all videos, stop trying
     if (errorCountRef.current >= videoList.length) {
       setHasError(true);
       setIsLoading(false);
@@ -42,6 +41,15 @@ const Home = () => {
     setIsLoading(false);
     setHasError(false);
     errorCountRef.current = 0;
+
+    videoRef.current?.play().catch((error) => {
+      if (error.name === "NotAllowedError") {
+        setNeedsInteraction(true);
+        setIsLoading(false);
+      } else {
+        handleVideoError(error);
+      }
+    });
   };
 
   const handleUserClick = () => {
@@ -52,30 +60,6 @@ const Home = () => {
       setNeedsInteraction(false);
     }
   };
-
-  useEffect(() => {
-    if (videoRef.current && !hasError) {
-      const timer = setTimeout(() => {
-        if (videoRef.current) {
-          const playPromise = videoRef.current.play();
-
-          if (playPromise !== undefined) {
-            playPromise.catch((error) => {
-              // Check if it's an autoplay policy error
-              if (error.name === "NotAllowedError") {
-                setNeedsInteraction(true);
-                setIsLoading(false);
-              } else {
-                handleVideoError(error);
-              }
-            });
-          }
-        }
-      }, 100);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentVideoIndex, hasError]);
 
   return (
     <div>
@@ -94,7 +78,6 @@ const Home = () => {
               as="video"
               ref={videoRef}
               src={videoList[currentVideoIndex]}
-              autoPlay
               muted
               loop={false}
               preload="auto"
