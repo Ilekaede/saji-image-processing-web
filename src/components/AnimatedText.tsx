@@ -1,7 +1,6 @@
-// AnimatedText.tsx
+import { useRef } from "react";
 import { chakra, BoxProps } from "@chakra-ui/react";
-import { motion, Variants } from "framer-motion";
-import { useInView } from "../hooks/useInView";
+import { motion, Variants, useInView } from "framer-motion";
 
 const MotionBox = chakra(motion.div);
 
@@ -10,12 +9,13 @@ const fadeUpVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-interface AnimatedTextProps extends BoxProps {
+type AnimatedTextProps = BoxProps & {
   children: React.ReactNode;
-}
+};
 
 export function AnimatedText({ children, ...boxProps }: AnimatedTextProps) {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <MotionBox
