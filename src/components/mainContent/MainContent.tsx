@@ -7,7 +7,7 @@ type MainContentProps = BoxProps & {
   children: ReactNode;
 };
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 const MainContent = ({ children, ...rest }: MainContentProps) => {
   return (

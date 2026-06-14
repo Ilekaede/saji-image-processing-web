@@ -143,7 +143,7 @@ const Manual = () => {
           boxShadow="lg"
         >
           <source
-            src={`${process.env.PUBLIC_URL}/videos/manual_1.webm`}
+            src={`${import.meta.env.BASE_URL}/videos/manual_1.webm`}
             type="video/webm"
           />
           お使いのブラウザは動画の再生に対応していません。

@@ -19,7 +19,10 @@ const MethodDetail = lazy(
 
 const App = () => {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router
+      basename={import.meta.env.BASE_URL}
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <ScrollToTop />
       <Box minH="100vh" bg="slate.50">
         <Header title="（非公式）- 佐治研画像処理学習キット -" />

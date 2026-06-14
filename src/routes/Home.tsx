@@ -3,8 +3,8 @@ import { useState, useRef } from "react";
 import { AnimatedText } from "../components/AnimatedText";
 
 const videoList = [
-  `${process.env.PUBLIC_URL}/videos/home_1.webm`,
-  `${process.env.PUBLIC_URL}/videos/home_2.webm`,
+  `${import.meta.env.BASE_URL}/videos/home_1.webm`,
+  `${import.meta.env.BASE_URL}/videos/home_2.webm`,
 ];
 
 const Home = () => {
