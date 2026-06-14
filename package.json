@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/testing-library__jest-dom": "^5.14.5",
     "file-loader": "^6.2.0",
     "prettier": "^3.8.3"
   }
