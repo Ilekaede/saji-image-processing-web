@@ -13,11 +13,13 @@ const MethodDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     setHasError(false);
     setMarkdown(null);
     setIsLoading(true);
 
-    fetch(`${WORKER_URL}/articles/method${id}`)
+    fetch(`${WORKER_URL}/articles/method${id}`, { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error("Not Found");
         return res.text();
@@ -25,12 +27,15 @@ const MethodDetail = () => {
       .then((text) => {
         setMarkdown(text);
       })
-      .catch(() => {
+      .catch((err: unknown) => {
+        if (err instanceof DOMException && err.name === "AbortError") return;
         setHasError(true);
       })
       .finally(() => {
         setIsLoading(false);
       });
+
+    return () => controller.abort();
   }, [id]);
 
   if (isLoading) {
