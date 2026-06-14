@@ -79,3 +79,6 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# mise
+.mise.local.toml
