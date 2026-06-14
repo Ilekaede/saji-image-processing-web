@@ -37,5 +37,5 @@ cd b3semi_web
 pnpm install
 
 # 開発サーバー起動
-pnpm start
+pnpm run dev
 ```
