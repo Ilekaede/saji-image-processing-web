@@ -1,42 +1,26 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Box, Heading, Text, Button, Spinner, Center } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useQuery } from "@tanstack/react-query";
 
 const WORKER_URL = "https://articles-worker.a-sakuramotyo.workers.dev";
 
+const fetchArticle = async (id: string): Promise<string> => {
+  const res = await fetch(`${WORKER_URL}/articles/method${id}`);
+  if (!res.ok) throw new Error("Not Found");
+  return res.text();
+};
+
 const MethodDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [markdown, setMarkdown] = useState<string | null>(null);
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    setHasError(false);
-    setMarkdown(null);
-    setIsLoading(true);
-
-    fetch(`${WORKER_URL}/articles/method${id}`, { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error("Not Found");
-        return res.text();
-      })
-      .then((text) => {
-        setMarkdown(text);
-      })
-      .catch((err: unknown) => {
-        if (err instanceof DOMException && err.name === "AbortError") return;
-        setHasError(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [id]);
+  const { data: markdown, isLoading, isError } = useQuery({
+    queryKey: ["article", id],
+    queryFn: () => fetchArticle(id!),
+    enabled: !!id,
+    retry: false,
+  });
 
   if (isLoading) {
     return (
@@ -46,7 +30,7 @@ const MethodDetail = () => {
     );
   }
 
-  if (hasError) {
+  if (isError) {
     return (
       <Box textAlign="center" py={20}>
         <Heading size="2xl" mb={4}>
