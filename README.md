@@ -18,12 +18,13 @@
 
 ## 🛠️ 技術スタック（Tech Stack）
 
-| 種類           | ツール／ライブラリ |
-| -------------- | ------------------ |
-| フロントエンド | React              |
-| スタイリング   | chakraUI           |
-| バージョン管理 | GitHub             |
-| ビルド         | Vite               |
+| 種類               | ツール／ライブラリ |
+| ------------------ | ------------------ |
+| フロントエンド     | React              |
+| スタイリング       | chakraUI           |
+| バージョン管理     | GitHub             |
+| ビルド             | Vite               |
+| パッケージマネージャー | pnpm           |
 
 ## 🚀 インストール／起動方法（Getting Started）
 
@@ -33,8 +34,8 @@ git clone https://github.com/Ilekaede/saji-image-processing-web.git
 cd b3semi_web
 
 # 依存パッケージをインストール
-npm install   # または yarn
+pnpm install
 
 # 開発サーバー起動
-npm run dev   # または yarn dev
+pnpm run dev
 ```

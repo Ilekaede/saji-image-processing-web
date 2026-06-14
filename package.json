@@ -41,6 +41,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/testing-library__jest-dom": "^5.14.5",
     "file-loader": "^6.2.0",
     "prettier": "^3.8.3"
   }
