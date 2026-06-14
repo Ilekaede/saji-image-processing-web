@@ -14,12 +14,12 @@ const fetchArticle = async (id: string): Promise<string> => {
 
 const MethodDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const safeId = id ?? "";
+  const articleId = id ?? "";
 
   const { data: markdown, isLoading, isError } = useQuery({
-    queryKey: ["article", safeId],
-    queryFn: () => fetchArticle(safeId),
-    enabled: safeId !== "",
+    queryKey: ["article", articleId],
+    queryFn: () => fetchArticle(articleId),
+    enabled: articleId !== "",
     retry: false,
   });
 
