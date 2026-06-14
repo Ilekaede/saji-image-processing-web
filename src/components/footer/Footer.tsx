@@ -26,7 +26,7 @@ const Footer = () => {
         justify="center"
         align="center"
       >
-        <Text fontSize="sm">© 2024 Hitoshi Sauji. All rights reserved</Text>
+        <Text fontSize="sm">© {new Date().getFullYear()} Hitoshi Sauji. All rights reserved</Text>
       </Container>
     </Box>
   );
