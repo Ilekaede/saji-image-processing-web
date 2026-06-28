@@ -5,6 +5,8 @@
 - `main` ブランチへの直接コミットは禁止
 - 作業は必ず feature ブランチを切って行う
 - ブランチ名: `feature/[issue番号]_[概要]`（例: `feature/84_eslint-setup`）
+- **ブランチを切る前に必ず `git checkout main && git pull` で main を最新化する**
+- push 前に `git fetch origin && git rebase origin/main` でコンフリクトを事前解消する
 - 作業完了後は PR を作成して `main` へマージする
 
 ## PR 規約
