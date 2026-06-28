@@ -7,6 +7,13 @@
 - ブランチ名: `feature/[issue番号]_[概要]`（例: `feature/84_eslint-setup`）
 - 作業完了後は PR を作成して `main` へマージする
 
+## PR 規約
+
+- PR 本文に必ず `closes #[issue番号]` を記載する
+- PR タイトルは 70 文字以内、概要は本文に書く
+- PR 本文は `.github/PULL_REQUEST_TEMPLATE.md` のテンプレートに従う
+- push の指示があった場合は push と PR 作成を一度に行う
+
 ## コミット規約
 
 Conventional Commits に従う。prefix の前に gitmoji を付ける。
