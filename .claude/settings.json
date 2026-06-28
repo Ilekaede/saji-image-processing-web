@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/a_sakura/work-space/b3semi_web/.claude/hooks/validate-markdown.py"
+          }
+        ]
+      }
+    ]
+  }
+}
