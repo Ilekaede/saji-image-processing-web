@@ -9,8 +9,8 @@
 
 ## PR 規約
 
-- PR 本文に必ず `closes #[issue番号]` を記載する（マージ時に issue が自動 close される）
-- PR タイトルは 70 文字以内、概要は本文に書く
+- PR 本文に必ず `closes #[issue番号]` を記載する
+- PR タイトルは 70 文字以内で対応し、概要は本文に書く
 - PR 本文は `.github/PULL_REQUEST_TEMPLATE.md` のテンプレートに従う
 
 ## コミット規約
