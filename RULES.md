@@ -1,5 +1,12 @@
 # 開発ルール詳細
 
+## ブランチ運用
+
+- `main` ブランチへの直接コミットは禁止
+- 作業は必ず feature ブランチを切って行う
+- ブランチ名: `feature/[issue番号]_[概要]`（例: `feature/84_eslint-setup`）
+- 作業完了後は PR を作成して `main` へマージする
+
 ## コミット規約
 
 Conventional Commits に従う。prefix の前に gitmoji を付ける。
