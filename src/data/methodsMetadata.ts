@@ -135,4 +135,13 @@ export const methodsMetadata: MethodContent[] = [
     searchableContent:
       "ベイジアンフィルタ パーティクルフィルタ 物体追跡 particle filter 粒子 縮退 リサンプリング オクルージョン 尤度関数 状態推定 確率分布 tracking",
   },
+  {
+    id: 14,
+    title: "差分法で動体を検出する",
+    overview:
+      "フレーム間差分法・MOG2・奥行き方向の検出問題など、実装時に詰まりやすい課題と対処法をまとめる。",
+    tags: ["画像処理", "動体検出", "背景差分法", "MOG2"],
+    searchableContent:
+      "差分法 フレーム間差分 背景差分 MOG2 動体検出 moving object detection background subtraction ゴースト 照明変化 影 オプティカルフロー 奥行き 接近 varThreshold learningRate",
+  },
 ];
