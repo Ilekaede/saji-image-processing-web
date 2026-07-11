@@ -14,7 +14,7 @@
 - PR 本文に必ず `closes #[issue番号]` を記載する
 - PR タイトルは 70 文字以内、概要は本文に書く
 - PR 本文は `.github/PULL_REQUEST_TEMPLATE.md` のテンプレートに従う
-- push の指示があった場合は push と PR 作成を一度に行う
+- push の指示があった場合は push と PR 作成を一度に行う。**rebase → push → PR 作成のフローと本文の粒度は `/create-pr` スキルに従う**
 
 ## コミット規約
 
