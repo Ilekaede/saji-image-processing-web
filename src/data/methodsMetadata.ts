@@ -144,4 +144,13 @@ export const methodsMetadata: MethodContent[] = [
     searchableContent:
       "差分法 フレーム間差分 背景差分 MOG2 動体検出 moving object detection background subtraction ゴースト 照明変化 影 オプティカルフロー 奥行き 接近 varThreshold learningRate",
   },
+  {
+    id: 15,
+    title: "射影変換で空撮映像を直下視点に変換する",
+    overview:
+      "ドローンの斜め空撮映像を鳥瞰図に変換する。動画に適用したときのドリフト・揺れ・平面仮定の破綻など、実運用で詰まる課題と対処法をまとめる。",
+    tags: ["画像処理", "射影変換", "ホモグラフィ", "空撮映像"],
+    searchableContent:
+      "射影変換 ホモグラフィ homography perspective transform 鳥瞰図 直下視点 ドローン 空撮 warpPerspective findHomography getPerspectiveTransform RANSAC ドリフト 平面仮定 対応点 速度計測 定点観察",
+  },
 ];
